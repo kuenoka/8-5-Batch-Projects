@@ -267,17 +267,34 @@ import UIKit
 
 //guard array.!isempty else { return ___}
 
-var switchOutput = "None"
-var sliderOutput = "None"
-var textFieldOutput = "None"
-var stepperOutput = "None"
-var segmentControlOutput = "None"
-    
-var array = ["Switch" + ":" + switchOutput,
-                 "Slider" + ":" + sliderOutput,
-                 "TextField" + ":" + textFieldOutput,
-                 "Stepper" + ":" + stepperOutput,
-                 "SegmentControl" + ":" + segmentControlOutput]
+//var switchOutput = "None"
+//var sliderOutput = "None"
+//var textFieldOutput = "None"
+//var stepperOutput = "None"
+//var segmentControlOutput = "None"
+//
+//var array = ["Switch" + ":" + switchOutput,
+//                 "Slider" + ":" + sliderOutput,
+//                 "TextField" + ":" + textFieldOutput,
+//                 "Stepper" + ":" + stepperOutput,
+//                 "SegmentControl" + ":" + segmentControlOutput]
+//
+//print (array)
 
-print (array)
+var students = ["Mike": 3.0, "jacob": "Yo"] as [String : Any]
+print(students)
 
+
+struct Mytopple {
+var name: String
+var grade: Any
+}
+
+var array: [Mytopple] = []
+for (name,gpa) in students {
+    let mytopple = Mytopple(name: name, grade: gpa)
+    //print(name,gpa)
+    mytopple.name
+    array.append(mytopple)
+}
+print(type(of: students))
