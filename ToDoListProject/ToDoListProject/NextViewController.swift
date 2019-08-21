@@ -25,7 +25,7 @@ class NextViewController: UIViewController {
     var toDoList: [ToDoItem] = []
     
     @IBAction func submit(_ sender: Any) {
-        let container = stuff.persistentContainer
+        //let container = stuff.persistentContainer
         do {
             let newItem = try stuff.addToDoItem(name: theTextField.text ?? "")
             stuff.save()
