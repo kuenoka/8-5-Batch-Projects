@@ -48,12 +48,16 @@ class NextViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             navigationController?.popViewController(animated: true)
-        default:
+        case 1:
             toDoList = stuff.getToDoList()
-            stuff.removeItem(item: toDoList[myArrayIndex!])
-            let newToDoList = stuff.getToDoList()
-            delegate?.updateArray(with: newToDoList)
-            navigationController?.popViewController(animated: true)
+            if !editItemText!.isEmpty {
+                stuff.removeItem(item: toDoList[myArrayIndex!])
+                let newToDoList = stuff.getToDoList()
+                delegate?.updateArray(with: newToDoList)
+                navigationController?.popViewController(animated: true)
+            }
+        default:
+            break
         }
     }
     
