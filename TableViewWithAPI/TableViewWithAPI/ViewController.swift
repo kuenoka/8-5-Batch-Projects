@@ -36,6 +36,7 @@ class ViewController: UIViewController {
                 print("Something went wrong")
                 return
             }
+            
             DispatchQueue.main.async{
                 self.clueArray = clue
                 self.jeopardyTable.reloadData()

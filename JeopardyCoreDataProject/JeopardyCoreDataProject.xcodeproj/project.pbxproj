@@ -13,6 +13,13 @@
 		045C1DD8230D999400683BFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045C1DD7230D999400683BFF /* Assets.xcassets */; };
 		045C1DDB230D999400683BFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045C1DD9230D999400683BFF /* LaunchScreen.storyboard */; };
 		045C1DE6230D999400683BFF /* JeopardyCoreDataProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1DE5230D999400683BFF /* JeopardyCoreDataProjectUITests.swift */; };
+		045C1DF1230E1C0400683BFF /* ClueDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1DF0230E1C0400683BFF /* ClueDataManager.swift */; };
+		045C1DF4230E1CF700683BFF /* ClueDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 045C1DF2230E1CF700683BFF /* ClueDataModel.xcdatamodeld */; };
+		045C1DFF230E322300683BFF /* Clue+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1DFD230E322300683BFF /* Clue+CoreDataClass.swift */; };
+		045C1E00230E322300683BFF /* Clue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1DFE230E322300683BFF /* Clue+CoreDataProperties.swift */; };
+		045C1E03230E5B2B00683BFF /* JeopardyClueCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1E01230E5B2B00683BFF /* JeopardyClueCellTableViewCell.swift */; };
+		045C1E04230E5B2B00683BFF /* JeopardyClueCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C1E02230E5B2B00683BFF /* JeopardyClueCellTableViewCell.xib */; };
+		045C1E06230E6EA300683BFF /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C1E05230E6EA300683BFF /* NextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,13 @@
 		045C1DE1230D999400683BFF /* JeopardyCoreDataProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JeopardyCoreDataProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		045C1DE5230D999400683BFF /* JeopardyCoreDataProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeopardyCoreDataProjectUITests.swift; sourceTree = "<group>"; };
 		045C1DE7230D999400683BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		045C1DF0230E1C0400683BFF /* ClueDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueDataManager.swift; sourceTree = "<group>"; };
+		045C1DF3230E1CF700683BFF /* ClueDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClueDataModel.xcdatamodel; sourceTree = "<group>"; };
+		045C1DFD230E322300683BFF /* Clue+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clue+CoreDataClass.swift"; sourceTree = "<group>"; };
+		045C1DFE230E322300683BFF /* Clue+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clue+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		045C1E01230E5B2B00683BFF /* JeopardyClueCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeopardyClueCellTableViewCell.swift; sourceTree = "<group>"; };
+		045C1E02230E5B2B00683BFF /* JeopardyClueCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JeopardyClueCellTableViewCell.xib; sourceTree = "<group>"; };
+		045C1E05230E6EA300683BFF /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +93,17 @@
 			children = (
 				045C1DD0230D999300683BFF /* AppDelegate.swift */,
 				045C1DD2230D999300683BFF /* ViewController.swift */,
+				045C1DFD230E322300683BFF /* Clue+CoreDataClass.swift */,
+				045C1DFE230E322300683BFF /* Clue+CoreDataProperties.swift */,
 				045C1DD4230D999300683BFF /* Main.storyboard */,
 				045C1DD7230D999400683BFF /* Assets.xcassets */,
 				045C1DD9230D999400683BFF /* LaunchScreen.storyboard */,
 				045C1DDC230D999400683BFF /* Info.plist */,
+				045C1DF0230E1C0400683BFF /* ClueDataManager.swift */,
+				045C1DF2230E1CF700683BFF /* ClueDataModel.xcdatamodeld */,
+				045C1E01230E5B2B00683BFF /* JeopardyClueCellTableViewCell.swift */,
+				045C1E02230E5B2B00683BFF /* JeopardyClueCellTableViewCell.xib */,
+				045C1E05230E6EA300683BFF /* NextViewController.swift */,
 			);
 			path = JeopardyCoreDataProject;
 			sourceTree = "<group>";
@@ -177,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045C1E04230E5B2B00683BFF /* JeopardyClueCellTableViewCell.xib in Resources */,
 				045C1DDB230D999400683BFF /* LaunchScreen.storyboard in Resources */,
 				045C1DD8230D999400683BFF /* Assets.xcassets in Resources */,
 				045C1DD6230D999300683BFF /* Main.storyboard in Resources */,
@@ -198,7 +220,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				045C1DD3230D999300683BFF /* ViewController.swift in Sources */,
+				045C1E06230E6EA300683BFF /* NextViewController.swift in Sources */,
+				045C1E03230E5B2B00683BFF /* JeopardyClueCellTableViewCell.swift in Sources */,
 				045C1DD1230D999300683BFF /* AppDelegate.swift in Sources */,
+				045C1DF4230E1CF700683BFF /* ClueDataModel.xcdatamodeld in Sources */,
+				045C1E00230E322300683BFF /* Clue+CoreDataProperties.swift in Sources */,
+				045C1DFF230E322300683BFF /* Clue+CoreDataClass.swift in Sources */,
+				045C1DF1230E1C0400683BFF /* ClueDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +487,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		045C1DF2230E1CF700683BFF /* ClueDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				045C1DF3230E1CF700683BFF /* ClueDataModel.xcdatamodel */,
+			);
+			currentVersion = 045C1DF3230E1CF700683BFF /* ClueDataModel.xcdatamodel */;
+			path = ClueDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 045C1DC5230D999200683BFF /* Project object */;
 }

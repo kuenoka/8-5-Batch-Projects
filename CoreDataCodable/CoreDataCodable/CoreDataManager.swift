@@ -24,7 +24,7 @@ class CoreDataManager {
     private init() { }
     
     func getAllPokemon() -> [Pokemon] {
-    let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
+        let fetchRequest: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
         let allPokemon = try? context.fetch(fetchRequest)
         return allPokemon ?? []
     }
