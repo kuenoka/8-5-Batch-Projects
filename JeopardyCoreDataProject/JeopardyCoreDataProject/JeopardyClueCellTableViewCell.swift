@@ -23,11 +23,12 @@ class JeopardyClueCellTableViewCell: UITableViewCell {
     var favoriteIndexArray: [Int] = []
     var clue: Clue?
     var favoriteArray: [Clue] = []
+    var isFavorite = false
     
     @IBAction func favoriteButton(_ sender: Any) {
         do {
             favoriteArray = ClueDataManager.shared.getAllClues()
-            if wifiOn == true && !favoriteIndexArray.contains(favoriteIndex) {
+            if wifiOn == true && !isFavorite/*!favoriteIndexArray.contains(favoriteIndex)*/ {
                 let newClue = try ClueDataManager.shared.addClue(answer: cellAnswer ?? "", question: cellQuestion ?? "", airdate: cellAirDate ?? "", createdAt: cellCreationAt ?? "", value: cellValue ?? 0, title: cellTitle ?? "")
                 favoriteIndexArray.append(Int(favoriteIndex))
                 ClueDataManager.shared.save()

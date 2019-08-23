@@ -12,7 +12,21 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var jeopardyTableView: UITableView!
     var clueArray: [Clue] = []
+    var favoriteArray = ClueDataManager.shared.getAllClues()
     var wifiConnection = false
+    
+    func isItFavorited( myClue: Clue, myClueArray: [Clue]) -> Bool {
+        
+        var isFavorite = false
+        
+        for elements in myClueArray{
+            if ( myClue.answer == elements.answer) {
+                isFavorite = true
+            }
+        }
+        
+        return isFavorite
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +69,7 @@ extension ViewController: UITableViewDataSource {
         cell.cellTitle = clueArray[indexPath.row].title
         cell.cellCreationAt = clueArray[indexPath.row].createdAt
 
+        cell.isFavorite = isItFavorited(myClue: clueArray[indexPath.row], myClueArray: favoriteArray)
         cell.wifiOn = wifiConnection
         cell.favoriteIndex = indexPath.row
         cell.clue = clueArray[indexPath.row]

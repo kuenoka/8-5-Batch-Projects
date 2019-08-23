@@ -281,23 +281,23 @@ import UIKit
 //
 //print (array)
 
-var students = ["Mike": 3.0, "jacob": "Yo"] as [String : Any]
-print(students)
-
-
-struct Mytopple {
-var name: String
-var grade: Any
-}
-
-var array: [Mytopple] = []
-for (name,gpa) in students {
-    let mytopple = Mytopple(name: name, grade: gpa)
-    //print(name,gpa)
-    mytopple.name
-    array.append(mytopple)
-}
-print(type(of: students))
+//var students = ["Mike": 3.0, "jacob": "Yo"] as [String : Any]
+//print(students)
+//
+//
+//struct Mytopple {
+//var name: String
+//var grade: Any
+//}
+//
+//var array: [Mytopple] = []
+//for (name,gpa) in students {
+//    let mytopple = Mytopple(name: name, grade: gpa)
+//    //print(name,gpa)
+//    mytopple.name
+//    array.append(mytopple)
+//}
+//print(type(of: students))
 
 /*func addFavorite(answer: String, question: String, airdate: String, createdAt: String, value: NSNumber, title: String) throws -> Favorite {
  guard let entityDescription = NSEntityDescription.entity(forEntityName: "Clue", in: context) else { throw CoreDataError.noSuchEntity}
@@ -322,3 +322,12 @@ print(type(of: students))
  let newObject = T(entity: entityDescription, insertInto: context)
  return newObject
  }*/
+
+var newString: String?// = "helloThere"
+
+//if newString.contains("Theyere") {
+//    print("yes")
+//} else {
+//    print("no")
+//}
+print(newString)
