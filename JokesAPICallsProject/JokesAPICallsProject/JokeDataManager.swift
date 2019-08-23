@@ -13,7 +13,7 @@ class JokeDataManager {
     static let shared = JokeDataManager()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "JokeDataModel")
+        let container = NSPersistentContainer(name: "JokeModel")
         container.loadPersistentStores { (_, _) in }
         return container
     }()

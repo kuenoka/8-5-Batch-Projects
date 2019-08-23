@@ -17,10 +17,10 @@ extension Joke {
         return NSFetchRequest<Joke>(entityName: "Joke")
     }
 
-    @NSManaged public var category: String?
+    @NSManaged public var category: String
     @NSManaged public var joke: String?
     @NSManaged public var setup: String?
-    @NSManaged public var type: String?
+    @NSManaged public var type: String
     @NSManaged public var delivery: String?
 
 }

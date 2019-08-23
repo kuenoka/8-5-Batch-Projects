@@ -25,10 +25,11 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBAction func getNewJoke(_ sender: Any) {
 
         URLSession.shared.dataTask(with: URL(string: "https://sv443.net/jokeapi/category/Any")!) { (data, _, _) in
-            guard let data = data,
-                let joke = try? JSONDecoder().decode(Joke.self, from: data) else {
+            guard let data = data else { return }
+            guard let joke = try? JSONDecoder().decode(Joke.self, from: data) else {
                     return
             }
+            print(joke)
             self.jokeArray.append(joke)
             
             }.resume()
