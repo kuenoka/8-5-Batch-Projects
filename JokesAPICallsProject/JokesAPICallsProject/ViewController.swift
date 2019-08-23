@@ -29,12 +29,11 @@ class ViewController: UIViewController, UITableViewDelegate {
             guard let joke = try? JSONDecoder().decode(Joke.self, from: data) else {
                     return
             }
-            print(joke)
             self.jokeArray.append(joke)
-            
             }.resume()
-        
-        jokeTableView.reloadData()
+        DispatchQueue.main.async{
+            self.jokeTableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -55,8 +54,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "jokecell")
+        cell.textLabel?.numberOfLines = 0
         
-        cell.textLabel?.text = jokeArray[indexPath.row].joke ?? ""
+        cell.textLabel?.text = "Single: \(jokeArray[indexPath.row].joke ?? "Its a two part")" +
+            "/Twopart Setup: \(jokeArray[indexPath.row].setup ?? "Its a single joke")" +
+            "/Delivery: \(jokeArray[indexPath.row].delivery ?? "None")"
         
         return cell
     }

@@ -28,9 +28,12 @@ public class Joke: NSManagedObject, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         category = try container.decode(String.self, forKey: .category)
         type = try container.decode(String.self, forKey: .type)
-        joke = try container.decode(String.self, forKey: .joke)
-        setup = try container.decode(String.self, forKey: .setup)
-        delivery = try container.decode(String.self, forKey: .delivery)
+        if ( type == "single") {
+            joke = try container.decode(String.self, forKey: .joke)
+        } else if (type == "twopart") {
+            setup = try container.decode(String.self, forKey: .setup)
+            delivery = try container.decode(String.self, forKey: .delivery)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
