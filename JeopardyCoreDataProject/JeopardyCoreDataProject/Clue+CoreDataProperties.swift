@@ -25,7 +25,3 @@ extension Clue {
     @NSManaged public var title: String
     
 }
-
-//struct category: Category {
-//    @NSManaged public var title: String
-//}

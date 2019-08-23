@@ -8,21 +8,10 @@
 
 import UIKit
 
-protocol ViewControllerDelegate{
-    func updateClue(with value: String)
-    func updateAnswer(with value: String)
-    func updateCategory(with value: String)
-    func updateValue(with value: String)
-    func updateAirdate(with value: String)
-    func updateCreationdate(with value: String)
-}
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var jeopardyTableView: UITableView!
     var clueArray: [Clue] = []
-    var favoriteArray = ClueDataManager.shared.getAllClues()
-    var delegate: ViewControllerDelegate?
     var wifiConnection = false
         
     override func viewDidLoad() {
@@ -31,7 +20,7 @@ class ViewController: UIViewController {
         jeopardyTableView.delegate = self
         jeopardyTableView.register(UINib.init(nibName: "JeopardyClueCellTableViewCell", bundle: nil), forCellReuseIdentifier: "cluecell")
         self.clueArray = ClueDataManager.shared.getAllClues()
-        guard let clueURL = URL(string: "http://jservice.io/api/clues") else { return}
+        guard let clueURL = URL(string: "http://jservice.io/api/clues") else { return }
         URLSession.shared.dataTask(with: clueURL) { (data, response, error) in
             if error == nil {
                 self.wifiConnection = true
@@ -49,6 +38,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clueArray.count
     }
@@ -68,14 +58,13 @@ extension ViewController: UITableViewDataSource {
         cell.wifiOn = wifiConnection
         cell.favoriteIndex = indexPath.row
         cell.clue = clueArray[indexPath.row]
-        cell.favoriteArray = favoriteArray
         
         return cell
     }
 }
 
-extension ViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: "NextViewController") as! NextViewController
@@ -93,8 +82,6 @@ extension ViewController: UITableViewDelegate{
         nextViewController.updateCategory = clueArray[indexPath.row].title
         nextViewController.updateCreationdate = clueArray[indexPath.row].createdAt
         
-        // nextViewController.delegate = self
-        //to go back
         navigationController?
             .pushViewController(nextViewController, animated: true)
     }

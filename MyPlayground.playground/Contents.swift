@@ -298,3 +298,27 @@ for (name,gpa) in students {
     array.append(mytopple)
 }
 print(type(of: students))
+
+/*func addFavorite(answer: String, question: String, airdate: String, createdAt: String, value: NSNumber, title: String) throws -> Favorite {
+ guard let entityDescription = NSEntityDescription.entity(forEntityName: "Clue", in: context) else { throw CoreDataError.noSuchEntity}
+ let newClue = Clue(entity: entityDescription, insertInto: context)
+ newClue.airdate = airdate
+ newClue.answer = answer
+ newClue.createdAt = createdAt
+ newClue.title = title
+ newClue.value = value
+ newClue.question = question
+ return newClue
+ }*/
+
+
+
+/*
+ func addObject<T: NSManagedObject>(ofType: T) throws -> T {
+ guard let entityDescription = NSEntityDescription.entity(
+ forEntityName: String(describing: T.self),
+ in: context)
+ else { throw CoreDataError.noSuchEntity }
+ let newObject = T(entity: entityDescription, insertInto: context)
+ return newObject
+ }*/

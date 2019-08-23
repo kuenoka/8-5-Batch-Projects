@@ -24,7 +24,6 @@ class NextViewController: UIViewController {
     var updateAirdate: String?
     var updateCreationdate: String?
     
-    //navigationController?.popViewController(animated: true)
     override func viewDidLoad() {
         super.viewDidLoad()
         
