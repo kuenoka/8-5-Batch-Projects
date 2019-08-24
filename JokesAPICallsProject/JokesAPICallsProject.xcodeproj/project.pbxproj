@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041FD9AE2311A0B700D0CC88 /* JokesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FD9AC2311A0B700D0CC88 /* JokesTableViewCell.swift */; };
+		041FD9AF2311A0B700D0CC88 /* JokesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041FD9AD2311A0B700D0CC88 /* JokesTableViewCell.xib */; };
 		0423804423104B2200B180F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423804323104B2200B180F5 /* AppDelegate.swift */; };
 		0423804623104B2200B180F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423804523104B2200B180F5 /* ViewController.swift */; };
 		0423804923104B2200B180F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0423804723104B2200B180F5 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041FD9AC2311A0B700D0CC88 /* JokesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesTableViewCell.swift; sourceTree = "<group>"; };
+		041FD9AD2311A0B700D0CC88 /* JokesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JokesTableViewCell.xib; sourceTree = "<group>"; };
 		0423804023104B2200B180F5 /* JokesAPICallsProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JokesAPICallsProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0423804323104B2200B180F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0423804523104B2200B180F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				0423804523104B2200B180F5 /* ViewController.swift */,
 				0423806623104F8700B180F5 /* Joke+CoreDataClass.swift */,
 				0423806723104F8700B180F5 /* Joke+CoreDataProperties.swift */,
+				041FD9AC2311A0B700D0CC88 /* JokesTableViewCell.swift */,
+				041FD9AD2311A0B700D0CC88 /* JokesTableViewCell.xib */,
 				0423804723104B2200B180F5 /* Main.storyboard */,
 				0423804A23104B2400B180F5 /* Assets.xcassets */,
 				0423804C23104B2400B180F5 /* LaunchScreen.storyboard */,
@@ -191,6 +197,7 @@
 			files = (
 				0423804E23104B2400B180F5 /* LaunchScreen.storyboard in Resources */,
 				0423804B23104B2400B180F5 /* Assets.xcassets in Resources */,
+				041FD9AF2311A0B700D0CC88 /* JokesTableViewCell.xib in Resources */,
 				0423804923104B2200B180F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +220,7 @@
 				0423806923104F8700B180F5 /* Joke+CoreDataProperties.swift in Sources */,
 				0423806523104D2B00B180F5 /* JokeModel.xcdatamodeld in Sources */,
 				0423804623104B2200B180F5 /* ViewController.swift in Sources */,
+				041FD9AE2311A0B700D0CC88 /* JokesTableViewCell.swift in Sources */,
 				0423806B231057C100B180F5 /* JokeDataManager.swift in Sources */,
 				0423804423104B2200B180F5 /* AppDelegate.swift in Sources */,
 			);
