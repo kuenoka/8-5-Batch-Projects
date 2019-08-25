@@ -91,6 +91,7 @@
 			children = (
 				0423804323104B2200B180F5 /* AppDelegate.swift */,
 				0423804523104B2200B180F5 /* ViewController.swift */,
+				0423806A231057C100B180F5 /* JokeDataManager.swift */,
 				0423806623104F8700B180F5 /* Joke+CoreDataClass.swift */,
 				0423806723104F8700B180F5 /* Joke+CoreDataProperties.swift */,
 				041FD9AC2311A0B700D0CC88 /* JokesTableViewCell.swift */,
@@ -100,7 +101,6 @@
 				0423804C23104B2400B180F5 /* LaunchScreen.storyboard */,
 				0423804F23104B2400B180F5 /* Info.plist */,
 				0423806323104D2B00B180F5 /* JokeModel.xcdatamodeld */,
-				0423806A231057C100B180F5 /* JokeDataManager.swift */,
 			);
 			path = JokesAPICallsProject;
 			sourceTree = "<group>";

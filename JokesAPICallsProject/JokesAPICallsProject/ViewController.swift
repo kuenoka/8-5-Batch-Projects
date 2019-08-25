@@ -12,6 +12,9 @@ class ViewController: UIViewController, UITableViewDelegate {
 
     var jokeArray: [Joke] = []
     var displayArray: [Joke] = []
+    var favoriteArray: [Joke] = JokeDataManager.shared.getAllJokes()
+    var favorite = false
+    
     var myCase = 0
     
     @IBOutlet weak var jokeTableView: UITableView!
@@ -25,7 +28,6 @@ class ViewController: UIViewController, UITableViewDelegate {
                 return
             }
             self.jokeArray.append(joke)
-            print(joke.category)
             self.displayArray = self.jokeArray
             }.resume()
         DispatchQueue.main.async{
@@ -79,21 +81,39 @@ class ViewController: UIViewController, UITableViewDelegate {
             displayArray = makeDarkJokes(defaultJoke: jokeArray)
             jokeTableView.reloadData()
         case 4:
-            displayArray = []
+            displayArray = favoriteArray
             jokeTableView.reloadData()
         default:
             break
         }
-        self.jokeTableView.reloadData()
+    }
+    
+    func isFavorite(checkJoke: Joke, defalultJokes: [Joke]) -> Bool {
         
+        var favorite = false
+        
+        for elements in defalultJokes {
+            if elements.type == "single" {
+                if elements.joke == checkJoke.joke {
+                    favorite = true
+                }
+            } else if elements.type == "twopart" {
+                if elements.setup == checkJoke.setup {
+                    favorite = true
+                }
+            }
+        }
+        return favorite
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         jokeTableView.dataSource = self
         jokeTableView.delegate = self
-        //jokeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "jokecell")
         jokeTableView.register(UINib.init(nibName: "JokesTableViewCell", bundle: nil), forCellReuseIdentifier: "jokecell")
+        
+        favoriteArray = JokeDataManager.shared.getAllJokes()
+        
         switch categorySegmentedControl.selectedSegmentIndex {
         case 0:
             displayArray = jokeArray
@@ -104,7 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         case 3:
             displayArray = makeDarkJokes(defaultJoke: jokeArray)
         case 4:
-            displayArray = []
+            displayArray = favoriteArray
         default:
             break
         }
@@ -120,13 +140,30 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell(style: .default, reuseIdentifier: "jokecell")
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "jokecell", for: indexPath) as! JokesTableViewCell
         cell.textLabel?.numberOfLines = 0
         
         cell.textLabel?.text = "Single: \(displayArray[indexPath.row].joke ?? "Its a two part")" +
             "/Twopart Setup: \(displayArray[indexPath.row].setup ?? "Its a single joke")" +
             "/Delivery: \(displayArray[indexPath.row].delivery ?? "None")"
+        
+        favorite = isFavorite(checkJoke: displayArray[indexPath.row], defalultJokes: favoriteArray)
+        
+        cell.favorite = favorite
+        cell.cellJokeSearch = displayArray[indexPath.row]
+        cell.cellCategory = displayArray[indexPath.row].category
+        cell.cellType = displayArray[indexPath.row].type
+        
+        if displayArray[indexPath.row].type == "single" {
+            cell.cellJoke = displayArray[indexPath.row].joke
+            cell.cellSetup = ""
+            cell.cellDelivery = ""
+        } else {
+            cell.cellJoke = ""
+            cell.cellSetup = displayArray[indexPath.row].setup
+            cell.cellDelivery = displayArray[indexPath.row].delivery
+        }
         
         return cell
     }

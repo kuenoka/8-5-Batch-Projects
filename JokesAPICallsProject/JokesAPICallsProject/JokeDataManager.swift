@@ -35,4 +35,21 @@ class JokeDataManager {
         try? context.save()
     }
     
+    func addJoke(joke: String, setup: String, delivery: String, category: String, type: String) throws -> Joke {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Joke", in: context) else { throw CoreDataError.noSuchEntity}
+        let newJoke = Joke(entity: entityDescription, insertInto: context)
+        newJoke.category = category
+        newJoke.delivery = delivery
+        newJoke.joke = joke
+        newJoke.setup = setup
+        newJoke.type = type
+        return newJoke
+    }
+    
+    func removeJoke(joke: Joke){
+        context.delete(joke)
+        save()
+    }
+
 }
+
