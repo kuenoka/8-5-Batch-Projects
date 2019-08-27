@@ -15,8 +15,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     var favoriteArray: [Joke] = JokeDataManager.shared.getAllJokes()
     var favorite = false
     
-    var myCase = 0
-    
     @IBOutlet weak var jokeTableView: UITableView!
     @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     
@@ -81,6 +79,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             displayArray = makeDarkJokes(defaultJoke: jokeArray)
             jokeTableView.reloadData()
         case 4:
+            favoriteArray = JokeDataManager.shared.getAllJokes()
             displayArray = favoriteArray
             jokeTableView.reloadData()
         default:
@@ -111,8 +110,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         jokeTableView.dataSource = self
         jokeTableView.delegate = self
         jokeTableView.register(UINib.init(nibName: "JokesTableViewCell", bundle: nil), forCellReuseIdentifier: "jokecell")
-        
-        favoriteArray = JokeDataManager.shared.getAllJokes()
         
         switch categorySegmentedControl.selectedSegmentIndex {
         case 0:
@@ -148,8 +145,9 @@ extension ViewController: UITableViewDataSource {
             "/Twopart Setup: \(displayArray[indexPath.row].setup ?? "Its a single joke")" +
             "/Delivery: \(displayArray[indexPath.row].delivery ?? "None")"
         
+        favoriteArray = JokeDataManager.shared.getAllJokes()
         favorite = isFavorite(checkJoke: displayArray[indexPath.row], defalultJokes: favoriteArray)
-        
+    
         cell.favorite = favorite
         cell.cellJokeSearch = displayArray[indexPath.row]
         cell.cellCategory = displayArray[indexPath.row].category

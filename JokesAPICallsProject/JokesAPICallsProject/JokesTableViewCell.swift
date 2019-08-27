@@ -13,7 +13,6 @@ class JokesTableViewCell: UITableViewCell {
     @IBOutlet weak var jokeCell: UILabel!
     
     var favorite = false
-    var favoriteArray: [Joke] = []
     var cellJoke: String?
     var cellSetup: String?
     var cellDelivery: String?
@@ -21,9 +20,10 @@ class JokesTableViewCell: UITableViewCell {
     var cellType: String?
     var cellJokeSearch: Joke?
     
+    
+    
     @IBAction func favoriteButton(_ sender: Any) {
         do {
-            favoriteArray = JokeDataManager.shared.getAllJokes()
             if !favorite {
                 let newJoke = try JokeDataManager.shared.addJoke(joke: cellJoke ?? "",
                                                                  setup: cellSetup ?? "",
@@ -36,7 +36,6 @@ class JokesTableViewCell: UITableViewCell {
                 JokeDataManager.shared.removeJoke(joke: cellJokeSearch!)
                 JokeDataManager.shared.save()
             }
-            favoriteArray = JokeDataManager.shared.getAllJokes()
         } catch {
             print("There was an error! Error: \(error.localizedDescription)")
         }
@@ -45,7 +44,6 @@ class JokesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        favoriteArray = JokeDataManager.shared.getAllJokes()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
