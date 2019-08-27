@@ -14,21 +14,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     let myNumberOfCells = 1000
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let itemWidth = UIScreen.main.bounds.width/5
-        let itemHeight = UIScreen.main.bounds.height/4
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
-        myCollectionView.collectionViewLayout = layout
-        
+        super.viewDidLoad()        
         myCollectionView.dataSource = self
+        myCollectionView.delegate = self
     }
 }
 
@@ -42,6 +30,21 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! myCell
         cell.myImageView.backgroundColor = .random
         return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/5 , height: collectionView.frame.height/4)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
     }
 }
 
