@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0458B0492316B0AC00992785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458B0482316B0AC00992785 /* AppDelegate.swift */; };
+		0458B04B2316B0AC00992785 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458B04A2316B0AC00992785 /* ViewController.swift */; };
+		0458B04E2316B0AC00992785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0458B04C2316B0AC00992785 /* Main.storyboard */; };
+		0458B0502316B0AE00992785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0458B04F2316B0AE00992785 /* Assets.xcassets */; };
+		0458B0532316B0AE00992785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0458B0512316B0AE00992785 /* LaunchScreen.storyboard */; };
+		0458B05E2316B0AE00992785 /* ResizingTableViewCellsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458B05D2316B0AE00992785 /* ResizingTableViewCellsUITests.swift */; };
+		0458B06A2316B12300992785 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458B0682316B12300992785 /* TableViewCell.swift */; };
+		0458B06B2316B12300992785 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0458B0692316B12300992785 /* TableViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0458B05A2316B0AE00992785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0458B03D2316B0AC00992785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0458B0442316B0AC00992785;
+			remoteInfo = ResizingTableViewCells;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0458B0452316B0AC00992785 /* ResizingTableViewCells.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResizingTableViewCells.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0458B0482316B0AC00992785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0458B04A2316B0AC00992785 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0458B04D2316B0AC00992785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0458B04F2316B0AE00992785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0458B0522316B0AE00992785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0458B0542316B0AE00992785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0458B0592316B0AE00992785 /* ResizingTableViewCellsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResizingTableViewCellsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0458B05D2316B0AE00992785 /* ResizingTableViewCellsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizingTableViewCellsUITests.swift; sourceTree = "<group>"; };
+		0458B05F2316B0AE00992785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0458B0682316B12300992785 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		0458B0692316B12300992785 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0458B0422316B0AC00992785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0458B0562316B0AE00992785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0458B03C2316B0AC00992785 = {
+			isa = PBXGroup;
+			children = (
+				0458B0472316B0AC00992785 /* ResizingTableViewCells */,
+				0458B05C2316B0AE00992785 /* ResizingTableViewCellsUITests */,
+				0458B0462316B0AC00992785 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0458B0462316B0AC00992785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0458B0452316B0AC00992785 /* ResizingTableViewCells.app */,
+				0458B0592316B0AE00992785 /* ResizingTableViewCellsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0458B0472316B0AC00992785 /* ResizingTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				0458B0482316B0AC00992785 /* AppDelegate.swift */,
+				0458B04A2316B0AC00992785 /* ViewController.swift */,
+				0458B04C2316B0AC00992785 /* Main.storyboard */,
+				0458B04F2316B0AE00992785 /* Assets.xcassets */,
+				0458B0512316B0AE00992785 /* LaunchScreen.storyboard */,
+				0458B0542316B0AE00992785 /* Info.plist */,
+				0458B0682316B12300992785 /* TableViewCell.swift */,
+				0458B0692316B12300992785 /* TableViewCell.xib */,
+			);
+			path = ResizingTableViewCells;
+			sourceTree = "<group>";
+		};
+		0458B05C2316B0AE00992785 /* ResizingTableViewCellsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0458B05D2316B0AE00992785 /* ResizingTableViewCellsUITests.swift */,
+				0458B05F2316B0AE00992785 /* Info.plist */,
+			);
+			path = ResizingTableViewCellsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0458B0442316B0AC00992785 /* ResizingTableViewCells */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0458B0622316B0AE00992785 /* Build configuration list for PBXNativeTarget "ResizingTableViewCells" */;
+			buildPhases = (
+				0458B0412316B0AC00992785 /* Sources */,
+				0458B0422316B0AC00992785 /* Frameworks */,
+				0458B0432316B0AC00992785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ResizingTableViewCells;
+			productName = ResizingTableViewCells;
+			productReference = 0458B0452316B0AC00992785 /* ResizingTableViewCells.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0458B0582316B0AE00992785 /* ResizingTableViewCellsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0458B0652316B0AE00992785 /* Build configuration list for PBXNativeTarget "ResizingTableViewCellsUITests" */;
+			buildPhases = (
+				0458B0552316B0AE00992785 /* Sources */,
+				0458B0562316B0AE00992785 /* Frameworks */,
+				0458B0572316B0AE00992785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0458B05B2316B0AE00992785 /* PBXTargetDependency */,
+			);
+			name = ResizingTableViewCellsUITests;
+			productName = ResizingTableViewCellsUITests;
+			productReference = 0458B0592316B0AE00992785 /* ResizingTableViewCellsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0458B03D2316B0AC00992785 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = MCS;
+				TargetAttributes = {
+					0458B0442316B0AC00992785 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					0458B0582316B0AE00992785 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 0458B0442316B0AC00992785;
+					};
+				};
+			};
+			buildConfigurationList = 0458B0402316B0AC00992785 /* Build configuration list for PBXProject "ResizingTableViewCells" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0458B03C2316B0AC00992785;
+			productRefGroup = 0458B0462316B0AC00992785 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0458B0442316B0AC00992785 /* ResizingTableViewCells */,
+				0458B0582316B0AE00992785 /* ResizingTableViewCellsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0458B0432316B0AC00992785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0458B0532316B0AE00992785 /* LaunchScreen.storyboard in Resources */,
+				0458B06B2316B12300992785 /* TableViewCell.xib in Resources */,
+				0458B0502316B0AE00992785 /* Assets.xcassets in Resources */,
+				0458B04E2316B0AC00992785 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0458B0572316B0AE00992785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0458B0412316B0AC00992785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0458B06A2316B12300992785 /* TableViewCell.swift in Sources */,
+				0458B04B2316B0AC00992785 /* ViewController.swift in Sources */,
+				0458B0492316B0AC00992785 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0458B0552316B0AE00992785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0458B05E2316B0AE00992785 /* ResizingTableViewCellsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0458B05B2316B0AE00992785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0458B0442316B0AC00992785 /* ResizingTableViewCells */;
+			targetProxy = 0458B05A2316B0AE00992785 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0458B04C2316B0AC00992785 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0458B04D2316B0AC00992785 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0458B0512316B0AE00992785 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0458B0522316B0AE00992785 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0458B0602316B0AE00992785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0458B0612316B0AE00992785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0458B0632316B0AE00992785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ResizingTableViewCells/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Introduction.ResizingTableViewCells;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0458B0642316B0AE00992785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ResizingTableViewCells/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Introduction.ResizingTableViewCells;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0458B0662316B0AE00992785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ResizingTableViewCellsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Introduction.ResizingTableViewCellsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ResizingTableViewCells;
+			};
+			name = Debug;
+		};
+		0458B0672316B0AE00992785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ResizingTableViewCellsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Introduction.ResizingTableViewCellsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ResizingTableViewCells;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0458B0402316B0AC00992785 /* Build configuration list for PBXProject "ResizingTableViewCells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0458B0602316B0AE00992785 /* Debug */,
+				0458B0612316B0AE00992785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0458B0622316B0AE00992785 /* Build configuration list for PBXNativeTarget "ResizingTableViewCells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0458B0632316B0AE00992785 /* Debug */,
+				0458B0642316B0AE00992785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0458B0652316B0AE00992785 /* Build configuration list for PBXNativeTarget "ResizingTableViewCellsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0458B0662316B0AE00992785 /* Debug */,
+				0458B0672316B0AE00992785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0458B03D2316B0AC00992785 /* Project object */;
+}

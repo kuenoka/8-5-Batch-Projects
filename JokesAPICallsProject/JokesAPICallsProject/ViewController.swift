@@ -27,10 +27,10 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
             self.jokeArray.append(joke)
             self.displayArray = self.jokeArray
+            DispatchQueue.main.async{
+                self.jokeTableView.reloadData()
+            }
             }.resume()
-        DispatchQueue.main.async{
-            self.jokeTableView.reloadData()
-        }
     }
     
     func makeProgrammingJokes( defaultJoke: [Joke]) -> [Joke] {

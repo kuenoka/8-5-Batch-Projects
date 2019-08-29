@@ -331,3 +331,18 @@ var newString: String?// = "helloThere"
 //    print("no")
 //}
 print(newString)
+
+
+// put the code below in view did load
+//        // Do any additional setup after loading the view.
+//        let itemWidth = UIScreen.main.bounds.width/5
+//        let itemHeight = UIScreen.main.bounds.height/4
+//
+//        let layout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+//        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+//
+//        layout.minimumInteritemSpacing = 0
+//        layout.minimumLineSpacing = 0
+//
+//        myCollectionView.collectionViewLayout = layout
