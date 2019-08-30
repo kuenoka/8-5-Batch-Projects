@@ -346,3 +346,28 @@ print(newString)
 //        layout.minimumLineSpacing = 0
 //
 //        myCollectionView.collectionViewLayout = layout
+
+//let k = 4
+//let S = [19, 10, 12, 10, 24, 25, 22]
+//
+//func findSet(divisor: Int, array: [Int]) -> Int{
+//
+//    var sum = 0
+//    var tempArray: [Int] = []
+//
+//    for i in 0...array.count - 2 {
+//        for j in i + 1...array.count - 1 {
+//            sum = array[i] + array[j]
+//            if (sum % 4) != 0 && !tempArray.contains(array[j]) {
+//                tempArray.append(array[j])
+//                tempArray.append(array[i])
+//            }
+//        }
+//
+//    }
+//
+//    print (tempArray)
+//    return tempArray.count
+//}
+//
+//print(findSet(divisor: k, array: S))

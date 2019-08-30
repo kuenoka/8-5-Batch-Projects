@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
         self.view.backgroundColor = .purple
         
-        var benzier = UIBezierPath(roundedRect: CGRect(x: 0.0, y: 0.0, width: 100, height: 20), cornerRadius: 1)
+        let benzier = UIBezierPath(roundedRect: CGRect(x: 0.0, y: 0.0, width: 100, height: 20), cornerRadius: 5)
         firstRect.path = benzier.cgPath
         firstRect.fillColor = UIColor.white.cgColor
         firstRect.position = CGPoint(x: 200.0, y: 400.0)
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "transform")
         
         basicAnimation.toValue = CATransform3DRotate(firstRect.transform, CGFloat(135 * Float.pi / 180), 0, 0, 1)
-        basicAnimation.duration = 5
+        basicAnimation.duration = 1
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         firstRect.add(basicAnimation, forKey: "animationtest")
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "transform")
         
         basicAnimation.toValue = CATransform3DRotate(secondRect.transform, CGFloat(180 * Float.pi / 180), 0, 0, 1)
-        basicAnimation.duration = 5
+        basicAnimation.duration = 1
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         secondRect.add(basicAnimation, forKey: "animationtest")
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "transform")
         
         basicAnimation.toValue = CATransform3DRotate(thirdRect.transform, CGFloat(135 * Float.pi / 180), 0, 0, -1)
-        basicAnimation.duration = 5
+        basicAnimation.duration = 1
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         thirdRect.add(basicAnimation, forKey: "animationtest")
