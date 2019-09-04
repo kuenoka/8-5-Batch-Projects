@@ -369,5 +369,13 @@ print(newString)
 //    print (tempArray)
 //    return tempArray.count
 //}
-//
+//to get all attributes of any json
 //print(findSet(divisor: k, array: S))
+
+//            do {
+//                let images = try JSONDecoder().decode(NewImages.self, from: data)
+//                print(images)
+//            } catch {
+//                print(error.localizedDescription)
+//                print(try! JSONSerialization.jsonObject(with: data, options: []))
+//            }
