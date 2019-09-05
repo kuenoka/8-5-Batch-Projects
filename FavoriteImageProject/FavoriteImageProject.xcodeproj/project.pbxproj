@@ -20,6 +20,11 @@
 		04B2AB59231D7DE8001E59AD /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2AB57231D7DE8001E59AD /* Image+CoreDataClass.swift */; };
 		04B2AB5A231D7DE8001E59AD /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2AB58231D7DE8001E59AD /* Image+CoreDataProperties.swift */; };
 		04B2AB5C231D7FC8001E59AD /* ImageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2AB5B231D7FC8001E59AD /* ImageDataManager.swift */; };
+		04E062402320A12F007A1E5F /* FirstCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0623F2320A12F007A1E5F /* FirstCategoryViewModel.swift */; };
+		04E062422320B68D007A1E5F /* SecondCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E062412320B68D007A1E5F /* SecondCategoryViewModel.swift */; };
+		04E062442320B8CF007A1E5F /* ThirdCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E062432320B8CF007A1E5F /* ThirdCategoryViewModel.swift */; };
+		04E062462320BA79007A1E5F /* FourthCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E062452320BA79007A1E5F /* FourthCategoryViewModel.swift */; };
+		04E062482320C3FD007A1E5F /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E062472320C3FD007A1E5F /* NextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +55,11 @@
 		04B2AB57231D7DE8001E59AD /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
 		04B2AB58231D7DE8001E59AD /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		04B2AB5B231D7FC8001E59AD /* ImageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataManager.swift; sourceTree = "<group>"; };
+		04E0623F2320A12F007A1E5F /* FirstCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCategoryViewModel.swift; sourceTree = "<group>"; };
+		04E062412320B68D007A1E5F /* SecondCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCategoryViewModel.swift; sourceTree = "<group>"; };
+		04E062432320B8CF007A1E5F /* ThirdCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCategoryViewModel.swift; sourceTree = "<group>"; };
+		04E062452320BA79007A1E5F /* FourthCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthCategoryViewModel.swift; sourceTree = "<group>"; };
+		04E062472320C3FD007A1E5F /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +114,11 @@
 				04B2AB54231D7C2A001E59AD /* ImageModel.xcdatamodeld */,
 				04B2AB5B231D7FC8001E59AD /* ImageDataManager.swift */,
 				04588EE3231E934D00F57CFA /* Hits.swift */,
+				04E0623F2320A12F007A1E5F /* FirstCategoryViewModel.swift */,
+				04E062412320B68D007A1E5F /* SecondCategoryViewModel.swift */,
+				04E062432320B8CF007A1E5F /* ThirdCategoryViewModel.swift */,
+				04E062452320BA79007A1E5F /* FourthCategoryViewModel.swift */,
+				04E062472320C3FD007A1E5F /* NextViewController.swift */,
 			);
 			path = FavoriteImageProject;
 			sourceTree = "<group>";
@@ -218,14 +233,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E062442320B8CF007A1E5F /* ThirdCategoryViewModel.swift in Sources */,
+				04E062482320C3FD007A1E5F /* NextViewController.swift in Sources */,
+				04E062422320B68D007A1E5F /* SecondCategoryViewModel.swift in Sources */,
 				04B2AB56231D7C2A001E59AD /* ImageModel.xcdatamodeld in Sources */,
 				04B2AB5C231D7FC8001E59AD /* ImageDataManager.swift in Sources */,
 				04B2AB53231D7180001E59AD /* InsideCollectionViewCell.swift in Sources */,
+				04E062402320A12F007A1E5F /* FirstCategoryViewModel.swift in Sources */,
 				04B2AB33231D6E88001E59AD /* ViewController.swift in Sources */,
 				04B2AB59231D7DE8001E59AD /* Image+CoreDataClass.swift in Sources */,
 				04B2AB51231D7116001E59AD /* MainTableViewCell.swift in Sources */,
 				04B2AB31231D6E88001E59AD /* AppDelegate.swift in Sources */,
 				04B2AB5A231D7DE8001E59AD /* Image+CoreDataProperties.swift in Sources */,
+				04E062462320BA79007A1E5F /* FourthCategoryViewModel.swift in Sources */,
 				04588EE4231E934D00F57CFA /* Hits.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

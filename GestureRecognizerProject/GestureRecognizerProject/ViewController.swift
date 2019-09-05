@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     //addPanGesture()
     //addRotationGesture()
-    //addTappedGesture()
-    addPinchGesture()
+    addTappedGesture()
+    //addPinchGesture()
   }
   
   func addPinchGesture() {

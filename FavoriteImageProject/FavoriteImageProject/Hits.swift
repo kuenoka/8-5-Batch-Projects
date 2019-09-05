@@ -9,5 +9,5 @@
 import Foundation
 
 struct NewImages: Decodable {
-    let hits: [Image]
+  let hits: [Image]
 }

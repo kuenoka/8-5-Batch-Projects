@@ -8,96 +8,137 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var myTableView: UITableView!
-    
-    var categoriesArray = ["yellow+flowers", "blue+flowers", "purple+flowers", "white+flowers"]//, "pink+flowers"]
-    
-    var anyArray: [Image] = []
-    var firstCategory: [Image] = []
-    var secondCategory: [Image] = []
-    var thirdCategory: [Image] = []
-    var fourthCategory: [Image] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        myTableView.dataSource = self
-        myTableView.register(UINib.init(nibName: "InsideCollectionViewCell", bundle: nil), forCellReuseIdentifier: "InsideCollectionViewCell")
-        let group = DispatchGroup()
-        for i in 0...categoriesArray.count-1 {
-            group.enter()
-             guard let url = URL (string: "https://pixabay.com/api/?key=13466097-dd8cc09427e40108d19a70079&q=\(categoriesArray[i])") else { return }
-            fillArray{from: url, (images) in
-                
-            }
-            defer { group.leave() }
-            if i == 0 {
-                firstCategory = anyArray
-            }
-            if i == 1 {
-                secondCategory = anyArray
-            }
-            if i == 2 {
-                thirdCategory = anyArray
-            }
-            if i == 3 {
-                fourthCategory = anyArray
-            }
-            //anyArray = []
-        }
-        
-        group.notify(queue: .main) {
-            self.myTableView.reloadData()
-        }
-        // Do any additional setup after loading the view.
+class ViewController: UIViewController, NextViewControllerDelegate {
+  
+  private let firstCategory = FirstCategoryViewModel()
+  private let secondCategory = SecondCategoryViewModel()
+  private let thirdCategory = ThirdCategoryViewModel()
+  private let fourthCategory = FourthCategoryViewModel()
+  var favoriteCategory = ImageDataManager.shared.getAllImages()
+  
+  @IBOutlet weak var myTableView: UITableView!
+  
+  var categoriesArray = ["yellow+flowers", "blue+flowers", "purple+flowers", "white+flowers"]
+  var array = ["Yellow Flowers", "Blue Flowers", "Purple Flowers", "White Flowers", "Favorite Images"]
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    myTableView.dataSource = self
+    myTableView.register(UINib.init(nibName: "InsideCollectionViewCell", bundle: nil), forCellReuseIdentifier: "InsideCollectionViewCell")
+    self.firstCategory.getData {
+      DispatchQueue.main.async{
+        self.myTableView.reloadData()
+      }
     }
-    
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    self.secondCategory.getData {
+      DispatchQueue.main.async{
+        self.myTableView.reloadData()
+      }
     }
-    
-    func fillArray(from url: URL, completion: @escaping (NewImages?) -> Void) {
-        getData(from: url) { data, response, error in
-            
-            guard let data = data, error == nil else { return }
-            guard let images = try? JSONDecoder().decode(NewImages.self, from: data) else {
-                print("no images")
-                return
-            }
-            
-//            DispatchQueue.main.async() {
-//                self.anyArray = images.hits
-//            }
-            completion(images)
-        }
+    self.thirdCategory.getData {
+      DispatchQueue.main.async{
+        self.myTableView.reloadData()
+      }
     }
-
+    self.fourthCategory.getData {
+      DispatchQueue.main.async{
+        self.myTableView.reloadData()
+      }
+    }
+    favoriteCategory = ImageDataManager.shared.getAllImages()
+    DispatchQueue.main.async {
+      self.myTableView.reloadData()
+    }
+    // Do any additional setup after loading the view.
+  }
+  
+  func updateFavoriteArray(with value: Image) {
+    favoriteCategory = ImageDataManager.shared.getAllImages()
+    DispatchQueue.main.async {
+      self.myTableView.reloadData()
+    }
+  }
 }
 
 extension ViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as! MainTableViewCell
-        
-        return cell
-    }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return array.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as! MainTableViewCell
+    cell.clCollectionView.dataSource = self
+    cell.clCollectionView.delegate = self
+    cell.clCollectionView.tag = indexPath.row
+    cell.myLabel.text = array[indexPath.row]
+    cell.clCollectionView.reloadData()
+    return cell
+  }
 }
 
 extension ViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return firstCategory.count
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    var number = 0
+    if collectionView.tag == 0 {
+      number = firstCategory.numberOfImages()
+    } else if collectionView.tag == 1 {
+      number = secondCategory.numberOfImages()
+    }else if collectionView.tag == 2 {
+      number = thirdCategory.numberOfImages()
+    } else if collectionView.tag == 3 {
+      number = fourthCategory.numberOfImages()
+    } else {
+      number = favoriteCategory.count
     }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InsideCollectionViewCell", for: indexPath) as! InsideCollectionViewCell
-        let url = URL (string: self.firstCategory[indexPath.row].previewURL!)
-        cell.downloadImage(from: url!)
-        return cell
+    return number
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InsideCollectionViewCell", for: indexPath) as! InsideCollectionViewCell
+    if collectionView.tag == 0 {
+      let url = URL (string: self.firstCategory.image(for: indexPath.row).previewURL!)
+      cell.downloadImage(from: url!)
     }
+    if collectionView.tag == 1 {
+      let url = URL (string: self.secondCategory.image(for: indexPath.row).previewURL!)
+      cell.downloadImage(from: url!)
+    }
+    if collectionView.tag == 2 {
+      let url = URL (string: self.thirdCategory.image(for: indexPath.row).previewURL!)
+      cell.downloadImage(from: url!)
+    }
+    if collectionView.tag == 3 {
+      let url = URL (string: self.fourthCategory.image(for: indexPath.row).previewURL!)
+      cell.downloadImage(from: url!)
+    }
+    if collectionView.tag == 4 {
+      let url = URL (string: self.favoriteCategory[indexPath.row].previewURL!)
+      cell.downloadImage(from: url!)
+    }
+    return cell
+  }
+}
+
+extension ViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let nextViewController = storyboard.instantiateViewController(withIdentifier: "NextViewController") as! NextViewController
+    
+    if collectionView.tag == 0 {
+      nextViewController.image = self.firstCategory.image(for: indexPath.row)
+    } else if collectionView.tag == 1 {
+      nextViewController.image = self.secondCategory.image(for: indexPath.row)
+    } else if collectionView.tag == 2 {
+      nextViewController.image = self.thirdCategory.image(for: indexPath.row)
+    } else if collectionView.tag == 3{
+      nextViewController.image = self.fourthCategory.image(for: indexPath.row)
+    } else {
+      nextViewController.image = self.favoriteCategory[indexPath.row]
+    }
+    nextViewController.myArrayIndex = indexPath.row
+    nextViewController.delegate = self
+    self.navigationController?.pushViewController(nextViewController, animated: true)
+  }
 }
