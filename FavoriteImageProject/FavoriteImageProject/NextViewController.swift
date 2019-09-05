@@ -9,7 +9,6 @@
 import UIKit
 
 protocol NextViewControllerDelegate {
-  //func updateFavoriteArray(with value: Image)
   func updateCategories(with value: Image, categoryIndex: Int, index: Int)
 }
 
@@ -56,7 +55,7 @@ class NextViewController: UIViewController {
     
     guard let url = URL (string: self.image.largeImageURL!) else { return }
     downloadImage(from: url)
-    if !isItFavorited(myImage: image, myImageArray: favoriteArray) {
+    if image.isFavorite == false {
       favoriteButtonOutlet.setTitle("Favorite", for: .normal)
     } else {
       favoriteButtonOutlet.setTitle("UnFavorite", for: .normal)
