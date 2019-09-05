@@ -41,6 +41,7 @@ public class Image: NSManagedObject, Decodable {
     }
     largeImageURL = try imageContainer.decode(String.self, forKey: .largeImageURL)
     previewURL = try imageContainer.decode(String.self, forKey: .previewURL)
+    isFavorite = false
   }
 }
 

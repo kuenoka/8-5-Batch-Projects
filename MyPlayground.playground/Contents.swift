@@ -379,3 +379,6 @@ print(newString)
 //                print(error.localizedDescription)
 //                print(try! JSONSerialization.jsonObject(with: data, options: []))
 //            }
+
+
+//    let uuid = UUID().uuidString

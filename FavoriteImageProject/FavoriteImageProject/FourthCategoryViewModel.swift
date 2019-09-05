@@ -10,7 +10,7 @@ import Foundation
 
 final class FourthCategoryViewModel {
   private let fourthCategoryURL = "https://pixabay.com/api/?key=13466097-dd8cc09427e40108d19a70079&q=white+flowers"
-  private var images = [Image]()
+  var images = [Image]()
   
   func getData(_ completion: (() -> Void)?) {
     guard let fourthCategoryUrl = URL(string: self.fourthCategoryURL) else {

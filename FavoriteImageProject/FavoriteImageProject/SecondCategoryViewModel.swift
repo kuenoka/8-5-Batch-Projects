@@ -9,7 +9,7 @@
 import Foundation
 final class SecondCategoryViewModel {
   private let secondCategoryURL = "https://pixabay.com/api/?key=13466097-dd8cc09427e40108d19a70079&q=blue+flowers"
-  private var images = [Image]()
+  var images = [Image]()
   
   func getData(_ completion: (() -> Void)?) {
     guard let secondCategoryUrl = URL(string: self.secondCategoryURL) else {

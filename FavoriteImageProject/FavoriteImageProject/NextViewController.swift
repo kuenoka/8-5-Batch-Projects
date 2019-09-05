@@ -9,7 +9,8 @@
 import UIKit
 
 protocol NextViewControllerDelegate {
-  func updateFavoriteArray(with value: Image)
+  //func updateFavoriteArray(with value: Image)
+  func updateCategories(with value: Image, categoryIndex: Int, index: Int)
 }
 
 class NextViewController: UIViewController {
@@ -17,30 +18,35 @@ class NextViewController: UIViewController {
   var image: Image!
   var delegate: NextViewControllerDelegate?
   var favoriteArray = ImageDataManager.shared.getAllImages()
-  var myArrayIndex: Int?
+  var categoryIndex: Int!
+  var myArrayIndex: Int!
   
   
+  @IBOutlet weak var favoriteButtonOutlet: UIButton!
   @IBOutlet weak var nextImageView: UIImageView!
   @IBOutlet weak var nextLabel: UILabel!
   
   @IBAction func favoriteButton(_ sender: Any) {
-    
-    do {
-      let newImage = try ImageDataManager.shared.addImage(comments: image.comments!, downloads: image.downloads!, largeImageURL: image.largeImageURL!, likes: image.likes!, previewURL: image.previewURL!, views: image.views!)
-      ImageDataManager.shared.save()
-    } catch {
-      print("There was an error! Error: \(error.localizedDescription)")
-    }
-    
-    favoriteArray = ImageDataManager.shared.getAllImages()
-    if !isItFavorited(myImage: image, myImageArray: favoriteArray){
-      print("just favorited")
-      delegate?.updateFavoriteArray(with: image)
-    } else {
-      favoriteArray = ImageDataManager.shared.getAllImages()
+    print("\(image.isFavorite)")
+    if image.isFavorite == false {
+      do {
+        let newImage = try ImageDataManager.shared.addImage(comments: image.comments!, downloads: image.downloads!, largeImageURL: image.largeImageURL!, likes: image.likes!, previewURL: image.previewURL!, views: image.views!, isFavorite: image.isFavorite)
+        ImageDataManager.shared.save()
+      } catch {
+        print("There was an error! Error: \(error.localizedDescription)")
+      }
+      image.isFavorite = !image.isFavorite
+      delegate?.updateCategories(with: image, categoryIndex: categoryIndex, index: myArrayIndex)
+      
+    } else if image.isFavorite == true {
+      do {
+        let myCopy = try ImageDataManager.shared.copyTheTwoImages(originalImage: image)
+      } catch {
+        print("There was an error! Error: \(error.localizedDescription)")
+      }
+      image.isFavorite = !image.isFavorite
+      delegate?.updateCategories(with: image, categoryIndex: categoryIndex, index: myArrayIndex)
       ImageDataManager.shared.removeImage(image: image)
-      delegate?.updateFavoriteArray(with: image)
-      favoriteArray = ImageDataManager.shared.getAllImages()
     }
     navigationController?.popViewController(animated: true)
   }
@@ -50,7 +56,11 @@ class NextViewController: UIViewController {
     
     guard let url = URL (string: self.image.largeImageURL!) else { return }
     downloadImage(from: url)
-    
+    if !isItFavorited(myImage: image, myImageArray: favoriteArray) {
+      favoriteButtonOutlet.setTitle("Favorite", for: .normal)
+    } else {
+      favoriteButtonOutlet.setTitle("UnFavorite", for: .normal)
+    }
     let imageInformation = "Downloads: \(self.image.downloads!)\n\nLikes: \(self.image.likes!)\n\nComments: \(self.image.comments!)\n\nViews: \(self.image.views!)"
     self.nextLabel.text = imageInformation
     // Do any additional setup after loading the view.

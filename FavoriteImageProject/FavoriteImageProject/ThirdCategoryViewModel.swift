@@ -10,7 +10,7 @@ import Foundation
 
 final class ThirdCategoryViewModel {
   private let thirdCategoryURL = "https://pixabay.com/api/?key=13466097-dd8cc09427e40108d19a70079&q=purple+flowers"
-  private var images = [Image]()
+  var images = [Image]()
   
   func getData(_ completion: (() -> Void)?) {
     guard let thirdCategoryUrl = URL(string: self.thirdCategoryURL) else {

@@ -155,6 +155,7 @@
                         <viewLayoutGuide key="safeArea" id="TaO-KU-TOx"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteButtonOutlet" destination="yr7-Wr-AKg" id="yav-Af-7BP"/>
                         <outlet property="nextImageView" destination="Jgz-YZ-J1x" id="Z1R-Sy-YXv"/>
                         <outlet property="nextLabel" destination="rga-xf-ywu" id="n28-1O-WVU"/>
                     </connections>

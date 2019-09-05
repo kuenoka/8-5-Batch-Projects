@@ -23,4 +23,5 @@ extension Image {
   @NSManaged public var comments: NSNumber?
   @NSManaged public var largeImageURL: String?
   @NSManaged public var previewURL: String?
+  @NSManaged public var isFavorite: Bool
 }

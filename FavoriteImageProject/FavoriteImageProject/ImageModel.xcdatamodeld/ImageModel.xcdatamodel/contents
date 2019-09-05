@@ -3,12 +3,13 @@
     <entity name="Image" representedClassName="Image" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="downloads" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="largeImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="likes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="previewURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="views" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Image" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Image" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
