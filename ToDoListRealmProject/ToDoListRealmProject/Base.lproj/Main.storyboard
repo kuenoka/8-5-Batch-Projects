@@ -65,7 +65,7 @@
                                 <rect key="frame" x="78" y="233" width="269" height="29"/>
                                 <segments>
                                     <segment title="Unfinished"/>
-                                    <segment title="Finished"/>
+                                    <segment title="Finished/Delete"/>
                                 </segments>
                                 <connections>
                                     <action selector="completedItem:" destination="oTp-mZ-ddv" eventType="valueChanged" id="Hzi-X6-h1p"/>
@@ -75,7 +75,7 @@
                                 <rect key="frame" x="108" y="660" width="198" height="36"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Submit"/>
+                                <state key="normal" title="Add Item"/>
                                 <connections>
                                     <action selector="submit:" destination="oTp-mZ-ddv" eventType="touchUpInside" id="8Aa-2x-yov"/>
                                 </connections>

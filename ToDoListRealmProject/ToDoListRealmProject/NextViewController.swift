@@ -45,9 +45,17 @@ class NextViewController: UIViewController {
       let newToDoList = listRealm.objects(ToDoItem.self)
       delegate?.updateArray(with: newToDoList)
     }
+    navigationController?.popViewController(animated: true)
   }
   
   @IBAction func completedItem(_ sender: UISegmentedControl) {
+    
+    if editItemText!.isEmpty {
+      sender.setTitle("Add Item", forSegmentAt: 0)
+    } else {
+      sender.setTitle("Delete Item", forSegmentAt: 0)
+    }
+    
     switch sender.selectedSegmentIndex {
     case 0:
       navigationController?.popViewController(animated: true)

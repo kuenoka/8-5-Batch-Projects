@@ -11,7 +11,6 @@ import RealmSwift
 
 class ViewController: UIViewController, NextViewControllerDelegate {
   
-  //let realm = try! Realm()
   let listRealm = try! Realm()
   var array: [String] = []
   
@@ -46,7 +45,7 @@ class ViewController: UIViewController, NextViewControllerDelegate {
     toDoListTableView.reloadData()
   }
   
-
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,27 +57,6 @@ class ViewController: UIViewController, NextViewControllerDelegate {
       let name = items.name
       array.append(name)
     }
-      // Use them like regular Swift objects
-//    let myDog = Dog()
-//    myDog.name = "RajjaRajja"
-//    myDog.age = 0
-//    print("name of dog: \(myDog.name)")
-//
-//    // Get the default Realm
-//
-//
-//    // Query Realm for all dogs less than 2 years old
-//    let puppies = realm.objects(Dog.self).filter("age < 2")
-//    puppies.count // => 0 because no dogs have been added to the Realm yet
-//    print(puppies.count)
-//    // Persist your data easily
-//    try! realm.write {
-//      realm.add(myDog)
-//    }
-//    let array = realm.objects(Dog.self)
-//    print(array[4])
-//    // Do any additional setup after loading the view.
-//    print(puppies.count)
   }
 }
 
