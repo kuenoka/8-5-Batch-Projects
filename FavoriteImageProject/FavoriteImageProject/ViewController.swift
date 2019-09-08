@@ -14,11 +14,10 @@ class ViewController: UIViewController, NextViewControllerDelegate {
   private let secondCategory = SecondCategoryViewModel()
   private let thirdCategory = ThirdCategoryViewModel()
   private let fourthCategory = FourthCategoryViewModel()
-  var favoriteCategory: [Image] = ImageDataManager.shared.getAllImages()
+  var favoriteCategory: [Image] = []
   
   @IBOutlet weak var myTableView: UITableView!
   
-  var categoriesArray = ["yellow+flowers", "blue+flowers", "purple+flowers", "white+flowers"]
   var array = ["Yellow Flowers", "Blue Flowers", "Purple Flowers", "White Flowers", "Favorite Images"]
   
   override func viewDidLoad() {
@@ -45,66 +44,26 @@ class ViewController: UIViewController, NextViewControllerDelegate {
         self.myTableView.reloadData()
       }
     }
-    favoriteCategory = ImageDataManager.shared.getAllImages()
+    favoriteCategory = fillFavorite()
+    
     DispatchQueue.main.async {
       self.myTableView.reloadData()
     }
     // Do any additional setup after loading the view.
   }
   
-  func fillFavoriteArray() -> [Image]{
-    favoriteCategory = []
-    for elements in firstCategory.images {
+  func fillFavorite() -> [Image] {
+    var favoriteArray: [Image] = []
+    for elements in ImageDataManager.shared.getAllImages() {
       if elements.isFavorite == true {
-        favoriteCategory.append(elements)
+        favoriteArray.append(elements)
       }
     }
-    for elements in secondCategory.images {
-      if elements.isFavorite == true {
-        favoriteCategory.append(elements)
-      }
-    }
-    for elements in thirdCategory.images {
-      if elements.isFavorite == true {
-        favoriteCategory.append(elements)
-      }
-    }
-    for elements in fourthCategory.images {
-      if elements.isFavorite == true {
-        favoriteCategory.append(elements)
-      }
-    }
-    
-    DispatchQueue.main.async {
-      self.myTableView.reloadData()
-    }
-    return favoriteCategory
+    return favoriteArray
   }
   
-  func updateCategories(with value: Image, categoryIndex: Int, index: Int) {
-    if categoryIndex == 0 {
-      firstCategory.image(for: index).isFavorite = value.isFavorite
-      DispatchQueue.main.async {
-        self.myTableView.reloadData()
-      }
-    } else if categoryIndex == 1 {
-      secondCategory.image(for: index).isFavorite = value.isFavorite
-      DispatchQueue.main.async {
-        self.myTableView.reloadData()
-      }
-    } else if categoryIndex == 2 {
-      thirdCategory.image(for: index).isFavorite = value.isFavorite
-      DispatchQueue.main.async {
-        self.myTableView.reloadData()
-      }
-    } else if categoryIndex == 3 {
-      fourthCategory.image(for: index).isFavorite = value.isFavorite
-      DispatchQueue.main.async {
-        self.myTableView.reloadData()
-      }
-    }
-    
-    favoriteCategory = fillFavoriteArray()
+  func updateCategories() {
+    favoriteCategory = fillFavorite()
     DispatchQueue.main.async {
       self.myTableView.reloadData()
     }
@@ -189,9 +148,6 @@ extension ViewController: UICollectionViewDelegate {
     } else {
       nextViewController.image = self.favoriteCategory[indexPath.row]
     }
-    print("\(nextViewController.image.isFavorite)")
-    nextViewController.myArrayIndex = indexPath.row
-    nextViewController.categoryIndex = collectionView.tag
     nextViewController.delegate = self
     self.navigationController?.pushViewController(nextViewController, animated: true)
   }

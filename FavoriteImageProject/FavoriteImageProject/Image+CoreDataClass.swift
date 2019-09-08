@@ -24,7 +24,7 @@ public class Image: NSManagedObject, Decodable {
   
   public convenience required init(from decoder: Decoder) throws {
     guard let entityDescription = NSEntityDescription.entity(forEntityName: "Image", in: ImageDataManager.shared.context) else { throw CoreDataError.noSuchEntity }
-    self.init(entity: entityDescription, insertInto: nil)
+    self.init(entity: entityDescription, insertInto: ImageDataManager.shared.context)
     let imageContainer = try decoder.container(keyedBy: ImageCodingKeys.self)
     
     if let viewsValue = try imageContainer.decodeIfPresent(Int.self, forKey: .views) {

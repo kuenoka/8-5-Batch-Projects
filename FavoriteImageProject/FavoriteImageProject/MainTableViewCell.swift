@@ -32,7 +32,7 @@ extension MainTableViewCell {
   {
     clCollectionView.delegate = dataSourceDelegate
     clCollectionView.dataSource = dataSourceDelegate
-    
+
     clCollectionView.reloadData()
   }
 }
