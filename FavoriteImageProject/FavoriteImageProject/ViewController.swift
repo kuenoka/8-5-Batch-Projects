@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, NextViewControllerDelegate {
   
-  private let firstCategory = FirstCategoryViewModel()
-  private let secondCategory = SecondCategoryViewModel()
-  private let thirdCategory = ThirdCategoryViewModel()
-  private let fourthCategory = FourthCategoryViewModel()
+  private var firstCategory = FirstCategoryViewModel()
+  private var secondCategory = SecondCategoryViewModel()
+  private var thirdCategory = ThirdCategoryViewModel()
+  private var fourthCategory = FourthCategoryViewModel()
   var favoriteCategory: [Image] = []
   
   @IBOutlet weak var myTableView: UITableView!
@@ -44,7 +44,7 @@ class ViewController: UIViewController, NextViewControllerDelegate {
         self.myTableView.reloadData()
       }
     }
-    favoriteCategory = fillFavorite()
+    favoriteCategory = ImageDataManager.shared.getAllImages()//fillFavorite()
     
     DispatchQueue.main.async {
       self.myTableView.reloadData()
@@ -52,18 +52,51 @@ class ViewController: UIViewController, NextViewControllerDelegate {
     // Do any additional setup after loading the view.
   }
   
-  func fillFavorite() -> [Image] {
-    var favoriteArray: [Image] = []
-    for elements in ImageDataManager.shared.getAllImages() {
-      if elements.isFavorite == true {
-        favoriteArray.append(elements)
-      }
-    }
-    return favoriteArray
-  }
+//  func fillFavorite() -> [Image] {
+//    var favoriteArray: [Image] = []
+//    for elements in ImageDataManager.shared.getAllImages() {
+//      if elements.isFavorite == true {
+//        favoriteArray.append(elements)
+//      }
+//    }
+//    return favoriteArray
+//  }
   
-  func updateCategories() {
-    favoriteCategory = fillFavorite()
+  func updateCategories(with value: Image, category: String, index: Int) {
+    favoriteCategory = ImageDataManager.shared.getAllImages()//fillFavorite()
+    if category == "firstCategory" {
+      firstCategory.image(for: index).isFavorite = value.isFavorite
+      firstCategory.image(for: index).comments = value.comments
+      firstCategory.image(for: index).views = value.views
+      firstCategory.image(for: index).downloads = value.downloads
+      firstCategory.image(for: index).largeImageURL = value.largeImageURL
+      firstCategory.image(for: index).previewURL = value.previewURL
+      firstCategory.image(for: index).likes = value.likes
+    } else if category == "secondCategory" {
+      secondCategory.image(for: index).isFavorite = value.isFavorite
+      secondCategory.image(for: index).comments = value.comments
+      secondCategory.image(for: index).views = value.views
+      secondCategory.image(for: index).downloads = value.downloads
+      secondCategory.image(for: index).largeImageURL = value.largeImageURL
+      secondCategory.image(for: index).previewURL = value.previewURL
+      secondCategory.image(for: index).likes = value.likes
+    } else if category == "thirdCategory" {
+      thirdCategory.image(for: index).isFavorite = value.isFavorite
+      thirdCategory.image(for: index).comments = value.comments
+      thirdCategory.image(for: index).views = value.views
+      thirdCategory.image(for: index).downloads = value.downloads
+      thirdCategory.image(for: index).largeImageURL = value.largeImageURL
+      thirdCategory.image(for: index).previewURL = value.previewURL
+      thirdCategory.image(for: index).likes = value.likes
+    } else if category == "fourthCategory" {
+      fourthCategory.image(for: index).isFavorite = value.isFavorite
+      fourthCategory.image(for: index).comments = value.comments
+      fourthCategory.image(for: index).views = value.views
+      fourthCategory.image(for: index).downloads = value.downloads
+      fourthCategory.image(for: index).largeImageURL = value.largeImageURL
+      fourthCategory.image(for: index).previewURL = value.previewURL
+      fourthCategory.image(for: index).likes = value.likes
+    }
     DispatchQueue.main.async {
       self.myTableView.reloadData()
     }
@@ -132,6 +165,22 @@ extension ViewController: UICollectionViewDataSource {
   }
 }
 
+extension ViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.width/2 , height: collectionView.frame.height)
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 0.0
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0.0
+  }
+}
+
+
 extension ViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
@@ -139,14 +188,24 @@ extension ViewController: UICollectionViewDelegate {
     let nextViewController = storyboard.instantiateViewController(withIdentifier: "NextViewController") as! NextViewController
     if collectionView.tag == 0 {
       nextViewController.image = self.firstCategory.image(for: indexPath.row)
+      nextViewController.imageCategory = "firstCategory"
+      nextViewController.imageIndex = indexPath.row
     } else if collectionView.tag == 1 {
       nextViewController.image = self.secondCategory.image(for: indexPath.row)
+      nextViewController.imageCategory = "secondCategory"
+      nextViewController.imageIndex = indexPath.row
     } else if collectionView.tag == 2 {
       nextViewController.image = self.thirdCategory.image(for: indexPath.row)
+      nextViewController.imageCategory = "thirdCategory"
+      nextViewController.imageIndex = indexPath.row
     } else if collectionView.tag == 3{
       nextViewController.image = self.fourthCategory.image(for: indexPath.row)
+      nextViewController.imageCategory = "fourthCategory"
+      nextViewController.imageIndex = indexPath.row
     } else {
       nextViewController.image = self.favoriteCategory[indexPath.row]
+      nextViewController.imageCategory = "favoriteCategory"
+      nextViewController.imageIndex = indexPath.row
     }
     nextViewController.delegate = self
     self.navigationController?.pushViewController(nextViewController, animated: true)

@@ -39,4 +39,27 @@ class ImageDataManager {
     image.isFavorite = !image.isFavorite
     save()
   }
+  
+  func addImage( image: Image ) {
+    context.insert(image)
+    save()
+  }
+  
+  func removeImage( image: Image) {
+    context.delete(image)
+    save()
+  }
+  
+  func copyImage( image: Image) throws -> Image {
+    guard let entityDescription = NSEntityDescription.entity(forEntityName: "Image", in: context) else { throw CoreDataError.noSuchEntity }
+    let newImage = Image(entity: entityDescription, insertInto: context)
+    newImage.comments = image.comments
+    newImage.likes = image.likes
+    newImage.downloads = image.downloads
+    newImage.isFavorite = image.isFavorite
+    newImage.views = image.views
+    newImage.previewURL = image.previewURL
+    newImage.largeImageURL = image.largeImageURL
+    return newImage
+  }
 }

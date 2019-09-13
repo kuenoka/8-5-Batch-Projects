@@ -20,7 +20,7 @@ final class FirstCategoryViewModel {
     URLSession.shared.dataTask(with: firstCategoryUrl) { data, _,  error in
       defer { completion?() }
       guard let data = data,
-        error == nil,
+        error == nil, 
         let newImages = try? JSONDecoder().decode(NewImages.self, from: data) else { return }
       self.images = newImages.hits
       }.resume()

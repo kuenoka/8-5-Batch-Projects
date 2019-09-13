@@ -9,12 +9,14 @@
 import UIKit
 
 protocol NextViewControllerDelegate {
-  func updateCategories()
+  func updateCategories(with value: Image, category: String, index: Int)
 }
 
 class NextViewController: UIViewController {
   
   var image: Image!
+  var imageCategory: String!
+  var imageIndex: Int!
   var delegate: NextViewControllerDelegate?
   var favoriteArray = ImageDataManager.shared.getAllImages()
   
@@ -24,9 +26,22 @@ class NextViewController: UIViewController {
   
   @IBAction func favoriteButton(_ sender: Any) {
     
-    ImageDataManager.shared.favoriteImage(image: image)
-    delegate?.updateCategories()
-    
+    if !image.isFavorite {
+      image.isFavorite = !image.isFavorite
+      ImageDataManager.shared.addImage(image: image)
+      delegate?.updateCategories(with: image, category: imageCategory, index:  imageIndex)
+    } else {
+//      image.isFavorite = !image.isFavorite
+//      delegate?.updateCategories(with: image, category: imageCategory, index:  imageIndex)
+      do {
+        let copiedImage = try ImageDataManager.shared.copyImage(image: image)
+        copiedImage.isFavorite = !copiedImage.isFavorite
+        delegate?.updateCategories(with: copiedImage, category: imageCategory, index:  imageIndex)
+      } catch {
+        print(error.localizedDescription)
+      }
+      ImageDataManager.shared.removeImage(image: image)
+    }
     navigationController?.popViewController(animated: true)
   }
   

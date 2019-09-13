@@ -12,13 +12,17 @@ class ViewController: UIViewController {
 
   static let customNotification = NSNotification.Name("custom notification")
   
+  var myUUID: UUID!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(wasNotified),
-                                           //name: UIApplication.didBecomeActiveNotification,
-                                           name: ViewController.customNotification,
-                                           object: nil)
+//    NotificationCenter.default.addObserver(self,
+//                                           selector: #selector(wasNotified),
+//                                           //name: UIApplication.didBecomeActiveNotification,
+//                                           name: ViewController.customNotification,
+//                                           object: nil)
+    myUUID = NewNotificationCenter.shared.addObserver(for: "custom notification", eventNotifyClosure: wasNotified(with:))
+    //NewNotificationCenter.shared.removeObserver(for: myUUID)
   }
 
 //  override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -38,5 +42,9 @@ class ViewController: UIViewController {
     print("New username is \(notification.userInfo?["username"])")
   }
 
+  func wasNotified(with info: [String: Any]?) {
+    print("I was notified of an event")
+    print("New username is \(info?["username"])")
+  }
 }
 

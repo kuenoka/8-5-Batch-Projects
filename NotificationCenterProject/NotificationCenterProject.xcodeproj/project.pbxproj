@@ -13,6 +13,7 @@
 		0411695923229910005E7536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0411695823229910005E7536 /* Assets.xcassets */; };
 		0411695C23229910005E7536 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0411695A23229910005E7536 /* LaunchScreen.storyboard */; };
 		0411696723229910005E7536 /* NotificationCenterProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411696623229910005E7536 /* NotificationCenterProjectUITests.swift */; };
+		04117D9F232A6E7B00865D8D /* NewNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04117D9E232A6E7B00865D8D /* NewNotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		0411696223229910005E7536 /* NotificationCenterProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotificationCenterProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0411696623229910005E7536 /* NotificationCenterProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterProjectUITests.swift; sourceTree = "<group>"; };
 		0411696823229910005E7536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04117D9E232A6E7B00865D8D /* NewNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				0411695823229910005E7536 /* Assets.xcassets */,
 				0411695A23229910005E7536 /* LaunchScreen.storyboard */,
 				0411695D23229910005E7536 /* Info.plist */,
+				04117D9E232A6E7B00865D8D /* NewNotificationCenter.swift */,
 			);
 			path = NotificationCenterProject;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04117D9F232A6E7B00865D8D /* NewNotificationCenter.swift in Sources */,
 				041169542322990E005E7536 /* ViewController.swift in Sources */,
 				041169522322990E005E7536 /* AppDelegate.swift in Sources */,
 			);
