@@ -316,30 +316,28 @@ class ProblemSolver {
 func findNumberOfSimilarCharactersInARow(firstInput: String, secondInput: String, thirdInput: String) -> Int {
   
   var comparingInput = ""
-  var tempFirst = ""
-  var tempSecond = ""
   var number = 0
+  var myCount = firstInput.count
   
-  for i in 0...firstInput.count - 1 {
-    for j in 0...secondInput.count - 1 {
-      if Array(firstInput)[i] == Array(secondInput)[j] && tempFirst == tempSecond {
-        comparingInput.append(Array(firstInput)[i])
-        tempFirst.append(Array(firstInput)[i])
-        tempSecond.append(Array(secondInput)[j])
-      }
+  if secondInput.count < firstInput.count {
+    myCount = secondInput.count
+  }
+  
+  for i in 0...myCount - 1 {
+    if Array(firstInput)[i] == Array(secondInput)[i] {
+      comparingInput.append(Array(firstInput)[i])
     }
   }
   
-  tempFirst = ""
-  tempSecond = ""
+  myCount = comparingInput.count
   
-  for i in 0...comparingInput.count - 1 {
-    for j in 0...thirdInput.count - 1 {
-      if Array(comparingInput)[i] == Array(thirdInput)[j] && tempFirst == tempSecond {
-        tempFirst.append(Array(comparingInput)[i])
-        tempSecond.append(Array(thirdInput)[j])
-        number += 1
-      }
+  if thirdInput.count < comparingInput.count {
+    myCount = thirdInput.count
+  }
+  
+  for i in 0...myCount - 1 {
+    if Array(comparingInput)[i] == Array(thirdInput)[i] {
+      number += 1
     }
   }
   
