@@ -342,6 +342,6 @@ func findNumberOfSimilarCharactersInARow(firstInput: String, secondInput: String
       }
     }
   }
-
+  
   return number
 }
