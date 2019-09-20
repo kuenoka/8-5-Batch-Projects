@@ -302,21 +302,22 @@ class ProblemSolver {
   func solveThirdProblem() {
     
     readLine()
-    let myFirstInput = readLine()
-    let mySecondInput = readLine()
-    let myThirdInput = readLine()
-    let answer = findNumberOfSimilarCharactersInARow(firstInput: myFirstInput ?? "",
-                                                     secondInput: mySecondInput ?? "",
-                                                     thirdInput: myThirdInput ?? "")
-    print(answer)
+    let myFirstInput = readLine() ?? ""
+    let mySecondInput = readLine() ?? ""
+    let myThirdInput = readLine() ?? ""
     
+    var comparingInput = getSimilarCharactersInARow(firstInput: myFirstInput ,
+                                                    secondInput: mySecondInput )
+    comparingInput = getSimilarCharactersInARow(firstInput: comparingInput,
+                                                secondInput: myThirdInput )
+    let answer = comparingInput.count
+    print(answer)
   }
 }
 
-func findNumberOfSimilarCharactersInARow(firstInput: String, secondInput: String, thirdInput: String) -> Int {
+func getSimilarCharactersInARow(firstInput: String, secondInput: String) -> String {
   
-  var comparingInput = ""
-  var number = 0
+  var similarCharactersInARow = ""
   var myCount = firstInput.count
   
   if secondInput.count < firstInput.count {
@@ -325,21 +326,9 @@ func findNumberOfSimilarCharactersInARow(firstInput: String, secondInput: String
   
   for i in 0...myCount - 1 {
     if Array(firstInput)[i] == Array(secondInput)[i] {
-      comparingInput.append(Array(firstInput)[i])
+      similarCharactersInARow.append(Array(firstInput)[i])
     }
   }
   
-  myCount = comparingInput.count
-  
-  if thirdInput.count < comparingInput.count {
-    myCount = thirdInput.count
-  }
-  
-  for i in 0...myCount - 1 {
-    if Array(comparingInput)[i] == Array(thirdInput)[i] {
-      number += 1
-    }
-  }
-  
-  return number
+  return similarCharactersInARow
 }
