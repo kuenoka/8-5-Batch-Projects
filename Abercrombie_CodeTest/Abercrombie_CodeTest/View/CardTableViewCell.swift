@@ -50,6 +50,11 @@ class CardTableViewCell: UITableViewCell {
       guard let data = data, error == nil else { return }
       DispatchQueue.main.async() {
         self.cellImageView.image = UIImage(data: data)
+//        self.cellImageView.translatesAutoresizingMaskIntoConstraints = false
+//        self.cellImageView.heightAnchor.constraint(equalToConstant: self.cellImageView.image?.size.height ?? 0).isActive = true
+//        self.cellImageView.widthAnchor.constraint(equalToConstant: self.cellImageView.image?.size.width ?? 200).isActive = true
+        //self.cellImageView.setNeedsLayout()
+        self.cellImageView.contentMode =  UIView.ContentMode.scaleAspectFill
       }
     }
   }
@@ -67,3 +72,5 @@ class CardTableViewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 }
+
+

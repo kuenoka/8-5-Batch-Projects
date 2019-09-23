@@ -38,8 +38,6 @@ extension ViewController: UITableViewDataSource {
     cell.titleLabel.text = cardArray.card(at: indexPath.row).title
     cell.promoMessageLabel.text = cardArray.card(at: indexPath.row).promoMessage
     cell.downloadImage(from: URL(string: cardArray.card(at: indexPath.row).backgroundImage)!)
-    cell.cellImageView.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
-    cell.cellImageView.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
     cell.buttonDescriptionLabel.text = cardArray.card(at: indexPath.row).bottomDescription
     cell.topDescriptionLabel.text = cardArray.card(at: indexPath.row).topDescription
     cell.menButtonOutlet.setTitle("", for: .normal)

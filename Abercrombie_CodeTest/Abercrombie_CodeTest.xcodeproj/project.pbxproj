@@ -72,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				0439B924233405000002CC5D /* Abercrombie_CodeTest */,
-				0439B939233405020002CC5D /* Abercrombie_CodeTestUITests */,
 				0439B923233405000002CC5D /* Products */,
+				0439B939233405020002CC5D /* Abercrombie_CodeTestUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,18 +89,15 @@
 		0439B924233405000002CC5D /* Abercrombie_CodeTest */ = {
 			isa = PBXGroup;
 			children = (
+				04773F3723387B3F00B9158B /* ViewModel */,
+				04773F3523387B0800B9158B /* View */,
+				04773F3423387AD600B9158B /* Model */,
 				0439B925233405000002CC5D /* AppDelegate.swift */,
-				0439B927233405000002CC5D /* ViewController.swift */,
-				0439B948233406E20002CC5D /* PromotionsCards.swift */,
-				0439B94A233407A50002CC5D /* ViewModel.swift */,
 				0439B929233405000002CC5D /* Main.storyboard */,
 				0439B92C233405020002CC5D /* Assets.xcassets */,
 				0439B92E233405020002CC5D /* LaunchScreen.storyboard */,
 				0439B931233405020002CC5D /* Info.plist */,
-				0439B94C233416930002CC5D /* CardTableViewCell.swift */,
-				0439B94D233416930002CC5D /* CardTableViewCell.xib */,
 				0439B950233423D20002CC5D /* InsideTableViewCell.swift */,
-				0439B95223345E0E0002CC5D /* NextViewController.swift */,
 			);
 			path = Abercrombie_CodeTest;
 			sourceTree = "<group>";
@@ -112,6 +109,33 @@
 				0439B93C233405020002CC5D /* Info.plist */,
 			);
 			path = Abercrombie_CodeTestUITests;
+			sourceTree = "<group>";
+		};
+		04773F3423387AD600B9158B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0439B948233406E20002CC5D /* PromotionsCards.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04773F3523387B0800B9158B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0439B94C233416930002CC5D /* CardTableViewCell.swift */,
+				0439B927233405000002CC5D /* ViewController.swift */,
+				0439B94D233416930002CC5D /* CardTableViewCell.xib */,
+				0439B95223345E0E0002CC5D /* NextViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04773F3723387B3F00B9158B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0439B94A233407A50002CC5D /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
