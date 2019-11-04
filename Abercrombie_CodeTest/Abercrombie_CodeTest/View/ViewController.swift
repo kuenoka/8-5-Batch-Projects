@@ -11,12 +11,12 @@ import UIKit
 class ViewController: UIViewController {
   
   @IBOutlet weak var cardsTableView: UITableView!
-  
   private var cardArray = ViewModel()
   override func viewDidLoad() {
     super.viewDidLoad()
     cardsTableView.dataSource = self
-    cardsTableView.register(UINib.init(nibName: "CardTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+//    cardsTableView.register(UINib.init(nibName: "CardTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+    cardsTableView.register(ProgrammaticCardTableViewCell.self, forCellReuseIdentifier: "cell")
     self.cardArray.getData {
       DispatchQueue.main.async {
         self.cardsTableView.reloadData()
@@ -26,28 +26,62 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
-  
+      
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return cardArray.numberOfCards()
   }
   
+//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CardTableViewCell
+//    cell.card = cardArray.card(at: indexPath.row)
+//    cell.delegate = self
+//    cell.titleLabel.text = cardArray.card(at: indexPath.row).title
+//    cell.promoMessageLabel.text = cardArray.card(at: indexPath.row).promoMessage
+//    cell.downloadImage(from: URL(string: cardArray.card(at: indexPath.row).backgroundImage)!)
+//    cell.buttonDescriptionLabel.text = cardArray.card(at: indexPath.row).bottomDescription
+//    cell.topDescriptionLabel.text = cardArray.card(at: indexPath.row).topDescription
+//    cell.menButtonOutlet.setTitle("", for: .normal)
+//    if cardArray.card(at: indexPath.row).content != nil {
+//      cell.menButtonOutlet.setTitle(cardArray.card(at: indexPath.row).content?[0].title, for: .normal)
+//    }
+//    cell.womenButtonOutlet.setTitle("", for: .normal)
+//    if cardArray.card(at: indexPath.row).content?.count == 2 {
+//      cell.womenButtonOutlet.setTitle(cardArray.card(at: indexPath.row).content?[1].title, for: .normal)
+//    }
+//    return cell
+//  }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CardTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProgrammaticCardTableViewCell
+    print(cardArray.card(at: indexPath.row))
     cell.card = cardArray.card(at: indexPath.row)
     cell.delegate = self
-    cell.titleLabel.text = cardArray.card(at: indexPath.row).title
-    cell.promoMessageLabel.text = cardArray.card(at: indexPath.row).promoMessage
     cell.downloadImage(from: URL(string: cardArray.card(at: indexPath.row).backgroundImage)!)
-    cell.buttonDescriptionLabel.text = cardArray.card(at: indexPath.row).bottomDescription
-    cell.topDescriptionLabel.text = cardArray.card(at: indexPath.row).topDescription
-    cell.menButtonOutlet.setTitle("", for: .normal)
-    if cardArray.card(at: indexPath.row).content != nil {
-      cell.menButtonOutlet.setTitle(cardArray.card(at: indexPath.row).content?[0].title, for: .normal)
+    cell.addTopDescription(description: "")
+    if let topDescription = cardArray.card(at: indexPath.row).topDescription {
+      cell.addTopDescription(description: topDescription)
     }
-    cell.womenButtonOutlet.setTitle("", for: .normal)
+    cell.addTitle(title: cardArray.card(at: indexPath.row).title)
+    cell.addPromoMessage(promoMessage: "")
+    if let newPromoMessage = cardArray.card(at: indexPath.row).promoMessage {
+      cell.addPromoMessage(promoMessage: newPromoMessage)
+    }
+    cell.addBottomDescription(bottomDescription: "")
+    if let newbottomDescription = cardArray.card(at: indexPath.row).bottomDescription {
+      cell.addBottomDescription(bottomDescription: newbottomDescription)
+    }
+    cell.addFirstButtonTitle(buttonTitle: "")
+    if let newFirstButton = cardArray.card(at: indexPath.row).content?[0].title{
+      cell.addFirstButtonTitle(buttonTitle: newFirstButton)
+    }
+    cell.addSecondButtonTitle(buttonTitle: "")
     if cardArray.card(at: indexPath.row).content?.count == 2 {
-      cell.womenButtonOutlet.setTitle(cardArray.card(at: indexPath.row).content?[1].title, for: .normal)
+      if let newSecondButton = cardArray.card(at: indexPath.row).content?[1].title{
+        cell.addSecondButtonTitle(buttonTitle: newSecondButton)
+      }
+      //cell.addSecondButtonTitle(buttonTitle: cardArray.card(at: indexPath.row).content?[1].title ?? "")
     }
+    cell.setConstraint()
     return cell
   }
   

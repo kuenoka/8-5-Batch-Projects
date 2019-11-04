@@ -12,17 +12,17 @@
 		0439B92B233405000002CC5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0439B929233405000002CC5D /* Main.storyboard */; };
 		0439B92D233405020002CC5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0439B92C233405020002CC5D /* Assets.xcassets */; };
 		0439B930233405020002CC5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0439B92E233405020002CC5D /* LaunchScreen.storyboard */; };
-		0439B93B233405020002CC5D /* Abercrombie_CodeTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B93A233405020002CC5D /* Abercrombie_CodeTestUITests.swift */; };
 		0439B949233406E20002CC5D /* PromotionsCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B948233406E20002CC5D /* PromotionsCards.swift */; };
 		0439B94B233407A50002CC5D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B94A233407A50002CC5D /* ViewModel.swift */; };
 		0439B94E233416930002CC5D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B94C233416930002CC5D /* CardTableViewCell.swift */; };
 		0439B94F233416930002CC5D /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0439B94D233416930002CC5D /* CardTableViewCell.xib */; };
-		0439B951233423D20002CC5D /* InsideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B950233423D20002CC5D /* InsideTableViewCell.swift */; };
 		0439B95323345E0E0002CC5D /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439B95223345E0E0002CC5D /* NextViewController.swift */; };
+		0455EF4B2342D4160031A0F8 /* Abercrombie_CodeTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EF4A2342D4160031A0F8 /* Abercrombie_CodeTestTests.swift */; };
+		0455EF532342E2F30031A0F8 /* ProgrammaticCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EF522342E2F30031A0F8 /* ProgrammaticCardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0439B937233405020002CC5D /* PBXContainerItemProxy */ = {
+		0455EF4D2342D4160031A0F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0439B91A233405000002CC5D /* Project object */;
 			proxyType = 1;
@@ -39,15 +39,17 @@
 		0439B92C233405020002CC5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0439B92F233405020002CC5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0439B931233405020002CC5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0439B936233405020002CC5D /* Abercrombie_CodeTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Abercrombie_CodeTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0439B93A233405020002CC5D /* Abercrombie_CodeTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abercrombie_CodeTestUITests.swift; sourceTree = "<group>"; };
 		0439B93C233405020002CC5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0439B948233406E20002CC5D /* PromotionsCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionsCards.swift; sourceTree = "<group>"; };
 		0439B94A233407A50002CC5D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0439B94C233416930002CC5D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		0439B94D233416930002CC5D /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
-		0439B950233423D20002CC5D /* InsideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsideTableViewCell.swift; sourceTree = "<group>"; };
 		0439B95223345E0E0002CC5D /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		0455EF482342D4160031A0F8 /* Abercrombie_CodeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Abercrombie_CodeTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0455EF4A2342D4160031A0F8 /* Abercrombie_CodeTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abercrombie_CodeTestTests.swift; sourceTree = "<group>"; };
+		0455EF4C2342D4160031A0F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0455EF522342E2F30031A0F8 /* ProgrammaticCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticCardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0439B933233405020002CC5D /* Frameworks */ = {
+		0455EF452342D4160031A0F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				0439B924233405000002CC5D /* Abercrombie_CodeTest */,
+				0455EF492342D4160031A0F8 /* Abercrombie_CodeTestTests */,
 				0439B923233405000002CC5D /* Products */,
 				0439B939233405020002CC5D /* Abercrombie_CodeTestUITests */,
 			);
@@ -81,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0439B922233405000002CC5D /* Abercrombie_CodeTest.app */,
-				0439B936233405020002CC5D /* Abercrombie_CodeTestUITests.xctest */,
+				0455EF482342D4160031A0F8 /* Abercrombie_CodeTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,7 +100,6 @@
 				0439B92C233405020002CC5D /* Assets.xcassets */,
 				0439B92E233405020002CC5D /* LaunchScreen.storyboard */,
 				0439B931233405020002CC5D /* Info.plist */,
-				0439B950233423D20002CC5D /* InsideTableViewCell.swift */,
 			);
 			path = Abercrombie_CodeTest;
 			sourceTree = "<group>";
@@ -111,6 +113,15 @@
 			path = Abercrombie_CodeTestUITests;
 			sourceTree = "<group>";
 		};
+		0455EF492342D4160031A0F8 /* Abercrombie_CodeTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				0455EF4A2342D4160031A0F8 /* Abercrombie_CodeTestTests.swift */,
+				0455EF4C2342D4160031A0F8 /* Info.plist */,
+			);
+			path = Abercrombie_CodeTestTests;
+			sourceTree = "<group>";
+		};
 		04773F3423387AD600B9158B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,10 +133,11 @@
 		04773F3523387B0800B9158B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0439B94C233416930002CC5D /* CardTableViewCell.swift */,
 				0439B927233405000002CC5D /* ViewController.swift */,
-				0439B94D233416930002CC5D /* CardTableViewCell.xib */,
 				0439B95223345E0E0002CC5D /* NextViewController.swift */,
+				0439B94C233416930002CC5D /* CardTableViewCell.swift */,
+				0439B94D233416930002CC5D /* CardTableViewCell.xib */,
+				0455EF522342E2F30031A0F8 /* ProgrammaticCardTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,23 +170,23 @@
 			productReference = 0439B922233405000002CC5D /* Abercrombie_CodeTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0439B935233405020002CC5D /* Abercrombie_CodeTestUITests */ = {
+		0455EF472342D4160031A0F8 /* Abercrombie_CodeTestTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0439B942233405020002CC5D /* Build configuration list for PBXNativeTarget "Abercrombie_CodeTestUITests" */;
+			buildConfigurationList = 0455EF4F2342D4160031A0F8 /* Build configuration list for PBXNativeTarget "Abercrombie_CodeTestTests" */;
 			buildPhases = (
-				0439B932233405020002CC5D /* Sources */,
-				0439B933233405020002CC5D /* Frameworks */,
-				0439B934233405020002CC5D /* Resources */,
+				0455EF442342D4160031A0F8 /* Sources */,
+				0455EF452342D4160031A0F8 /* Frameworks */,
+				0455EF462342D4160031A0F8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0439B938233405020002CC5D /* PBXTargetDependency */,
+				0455EF4E2342D4160031A0F8 /* PBXTargetDependency */,
 			);
-			name = Abercrombie_CodeTestUITests;
-			productName = Abercrombie_CodeTestUITests;
-			productReference = 0439B936233405020002CC5D /* Abercrombie_CodeTestUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			name = Abercrombie_CodeTestTests;
+			productName = Abercrombie_CodeTestTests;
+			productReference = 0455EF482342D4160031A0F8 /* Abercrombie_CodeTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -182,15 +194,15 @@
 		0439B91A233405000002CC5D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = MCS;
 				TargetAttributes = {
 					0439B921233405000002CC5D = {
 						CreatedOnToolsVersion = 10.3;
 					};
-					0439B935233405020002CC5D = {
-						CreatedOnToolsVersion = 10.3;
+					0455EF472342D4160031A0F8 = {
+						CreatedOnToolsVersion = 11.0;
 						TestTargetID = 0439B921233405000002CC5D;
 					};
 				};
@@ -209,7 +221,7 @@
 			projectRoot = "";
 			targets = (
 				0439B921233405000002CC5D /* Abercrombie_CodeTest */,
-				0439B935233405020002CC5D /* Abercrombie_CodeTestUITests */,
+				0455EF472342D4160031A0F8 /* Abercrombie_CodeTestTests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,7 +238,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0439B934233405020002CC5D /* Resources */ = {
+		0455EF462342D4160031A0F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -240,9 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0455EF532342E2F30031A0F8 /* ProgrammaticCardTableViewCell.swift in Sources */,
 				0439B94E233416930002CC5D /* CardTableViewCell.swift in Sources */,
 				0439B95323345E0E0002CC5D /* NextViewController.swift in Sources */,
-				0439B951233423D20002CC5D /* InsideTableViewCell.swift in Sources */,
 				0439B928233405000002CC5D /* ViewController.swift in Sources */,
 				0439B926233405000002CC5D /* AppDelegate.swift in Sources */,
 				0439B94B233407A50002CC5D /* ViewModel.swift in Sources */,
@@ -250,21 +262,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0439B932233405020002CC5D /* Sources */ = {
+		0455EF442342D4160031A0F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0439B93B233405020002CC5D /* Abercrombie_CodeTestUITests.swift in Sources */,
+				0455EF4B2342D4160031A0F8 /* Abercrombie_CodeTestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0439B938233405020002CC5D /* PBXTargetDependency */ = {
+		0455EF4E2342D4160031A0F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0439B921233405000002CC5D /* Abercrombie_CodeTest */;
-			targetProxy = 0439B937233405020002CC5D /* PBXContainerItemProxy */;
+			targetProxy = 0455EF4D2342D4160031A0F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,41 +450,43 @@
 			};
 			name = Release;
 		};
-		0439B943233405020002CC5D /* Debug */ = {
+		0455EF502342D4160031A0F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Abercrombie_CodeTestUITests/Info.plist;
+				INFOPLIST_FILE = Abercrombie_CodeTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Introduction.Abercrombie-CodeTestUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Introduction.Abercrombie-CodeTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Abercrombie_CodeTest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Abercrombie_CodeTest.app/Abercrombie_CodeTest";
 			};
 			name = Debug;
 		};
-		0439B944233405020002CC5D /* Release */ = {
+		0455EF512342D4160031A0F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Abercrombie_CodeTestUITests/Info.plist;
+				INFOPLIST_FILE = Abercrombie_CodeTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Introduction.Abercrombie-CodeTestUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Introduction.Abercrombie-CodeTestTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Abercrombie_CodeTest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Abercrombie_CodeTest.app/Abercrombie_CodeTest";
 			};
 			name = Release;
 		};
@@ -497,11 +511,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0439B942233405020002CC5D /* Build configuration list for PBXNativeTarget "Abercrombie_CodeTestUITests" */ = {
+		0455EF4F2342D4160031A0F8 /* Build configuration list for PBXNativeTarget "Abercrombie_CodeTestTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0439B943233405020002CC5D /* Debug */,
-				0439B944233405020002CC5D /* Release */,
+				0455EF502342D4160031A0F8 /* Debug */,
+				0455EF512342D4160031A0F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

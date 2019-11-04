@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct PromotionCard: Decodable {
+struct PromotionCard: Codable, Equatable {
+  static func == (lhs: PromotionCard, rhs: PromotionCard) -> Bool {
+    return lhs.backgroundImage == rhs.backgroundImage &&
+      lhs.bottomDescription == rhs.bottomDescription &&
+      lhs.content == rhs.content &&
+      lhs.promoMessage == rhs.promoMessage &&
+      lhs.title == rhs.title &&
+      lhs.topDescription == rhs.topDescription
+  }
+  
   let title: String
   let backgroundImage: String
   let promoMessage: String?
@@ -17,7 +26,7 @@ struct PromotionCard: Decodable {
   let bottomDescription: String?
 }
 
-struct Content: Decodable {
+struct Content: Codable, Equatable {
   let target: String
   let title: String
 }

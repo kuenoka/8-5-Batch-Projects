@@ -56,14 +56,15 @@ import UIKit
 //
 //rotateArray(array: array, numberOfRotations: 12)
 
-var arrayTwo: [[Int]] = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+var arrayTwo: [[Int]] = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
 print(arrayTwo[0])
 print(arrayTwo[1])
 print(arrayTwo[2])
 print(arrayTwo[3])
+print(arrayTwo[4])
 print("we made it")
 
-func changeNByNToN ( array: [[Int]]) -> [[Int]] {
+func rotateArray ( array: [[Int]]) -> [[Int]] {
   
   var snake:[Int] = []
   let numberOfEdgeElements = (4 * array.count) - 4
@@ -85,8 +86,7 @@ func changeNByNToN ( array: [[Int]]) -> [[Int]] {
     }
     
   }
-  var temp = 0
-  temp = snake[0]
+  
   var newSnake: [Int] = []
   
   for i in 0...snake.count - 1 {
@@ -121,7 +121,6 @@ func changeNByNToN ( array: [[Int]]) -> [[Int]] {
     
   }
   
-  
   if ( (array.count - 2) > 1 ) {
     let usedArray = [Int](repeating: 0, count: answer.count - 2)
     var newInput = [[Int]](repeating: usedArray, count: answer.count - 2)
@@ -131,7 +130,7 @@ func changeNByNToN ( array: [[Int]]) -> [[Int]] {
         newInput[i-1][j-1] = answer[i][j]
       }
     }
-    let inside = changeNByNToN(array: newInput)
+    let inside = rotateArray(array: newInput)
     
     for i in 1...answer.count - 2 {
       for j in 1...answer.count - 2 {
@@ -143,8 +142,9 @@ func changeNByNToN ( array: [[Int]]) -> [[Int]] {
   return answer
 }
 
-let solution = changeNByNToN(array: arrayTwo)
+let solution = rotateArray(array: arrayTwo)
 print(solution[0])
 print(solution[1])
 print(solution[2])
 print(solution[3])
+print(solution[4])
