@@ -51,12 +51,14 @@ final class ViewModel {
     }
   }
   
-  func numberOfCards() -> Int{
+  func numberOfCards() -> Int {
     return cards.count
   }
   
   func card(at index: Int) -> PromotionCard {
     return cards[index]
   }
+  
 }
+
 

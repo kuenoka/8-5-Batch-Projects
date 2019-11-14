@@ -37,8 +37,15 @@ class ViewController: UIViewController {
   var playerOneWin = false
   var playerTwoWin = false
   var array = [[0,0,0],[0,0,0],[0,0,0]]
+  var fakeArray = [[0,0,0],[0,0,0],[0,0,0]]
   var typeOfGame: Int!
   var playedSpots: [Int]!
+  var firstMoveBool = true
+  let numberOfPlays = 4
+  var fakeNumberOfPlays = 4
+  var fakePlayerOneIndex = 0
+  var fakePlayerTwoIndex = 0
+  var bestMoveList: [Int] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -101,6 +108,7 @@ class ViewController: UIViewController {
     playerBool = false
     playerOneWin = false
     playerTwoWin = false
+    firstMoveBool = true
   }
   
   func createGameName() {
@@ -162,308 +170,109 @@ class ViewController: UIViewController {
     gameView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 224).isActive = true
     
     let verticalBenzier = UIBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: 15, height: 414))
-    firstLine.path = verticalBenzier.cgPath
-    firstLine.fillColor = UIColor.black.cgColor
-    firstLine.position = CGPoint(x: 128.0, y: 0)
-    self.gameView.layer.addSublayer(firstLine)
-    
-    secondLine.path = verticalBenzier.cgPath
-    secondLine.fillColor = UIColor.black.cgColor
-    secondLine.position = CGPoint(x: 271.0, y: 0)
-    self.gameView.layer.addSublayer(secondLine)
+    useToCreateGameView(line: firstLine, benzierPath: verticalBenzier, position: [128,0])
+    useToCreateGameView(line: secondLine, benzierPath: verticalBenzier, position: [271,0])
     
     let horizontalBenzier = UIBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: 414, height: 15))
-    thirdLine.path = horizontalBenzier.cgPath
-    thirdLine.fillColor = UIColor.black.cgColor
-    thirdLine.position = CGPoint(x: 0.0, y: 128)
-    self.gameView.layer.addSublayer(thirdLine)
-    
-    fourthLine.path = horizontalBenzier.cgPath
-    fourthLine.fillColor = UIColor.black.cgColor
-    fourthLine.position = CGPoint(x: 0.0, y: 271)
-    self.gameView.layer.addSublayer(fourthLine)
+    useToCreateGameView(line: thirdLine, benzierPath: horizontalBenzier, position: [0,128])
+    useToCreateGameView(line: fourthLine, benzierPath: horizontalBenzier, position: [0,271])
     
     addButtons()
   }
   
+  func useToCreateGameView(line: CAShapeLayer, benzierPath: UIBezierPath, position:[Int]) {
+    line.path = benzierPath.cgPath
+    line.fillColor = UIColor.black.cgColor
+    line.position = CGPoint(x: position[0], y: position[1])
+    self.gameView.layer.addSublayer(line)
+  }
+  
   func addButtons() {
-    firstButton.frame = CGRect(x: 15, y: 15, width: 100, height: 100)
-    firstButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      firstButton.addTarget(self, action: #selector(firstButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      firstButton.addTarget(self, action: #selector(dAIFirstButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      firstButton.addTarget(self, action: #selector(sAIFirstButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.firstButton)
+    useToCreateAddButton(button: firstButton, position: [15,15], typeOneAction: #selector(firstButtonAction), typeTwoAction: #selector(dAIFirstButtonAction), typeThreeAction: #selector(sAIFirstButtonAction))
     
-    secondButton.frame = CGRect(x: 158, y: 15, width: 100, height: 100)
-    secondButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      secondButton.addTarget(self, action: #selector(secondButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      secondButton.addTarget(self, action: #selector(dAISecondButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      secondButton.addTarget(self, action: #selector(sAISecondButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.secondButton)
+    useToCreateAddButton(button: secondButton, position: [158,15], typeOneAction: #selector(secondButtonAction), typeTwoAction: #selector(dAISecondButtonAction), typeThreeAction: #selector(sAISecondButtonAction))
     
-    thirdButton.frame = CGRect(x: 301, y: 15, width: 100, height: 100)
-    thirdButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      thirdButton.addTarget(self, action: #selector(thirdButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      thirdButton.addTarget(self, action: #selector(dAIThirdButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      thirdButton.addTarget(self, action: #selector(sAIThirdButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.thirdButton)
+    useToCreateAddButton(button: thirdButton, position: [301,15], typeOneAction: #selector(thirdButtonAction), typeTwoAction: #selector(dAIThirdButtonAction), typeThreeAction: #selector(sAIThirdButtonAction))
     
-    fourthButton.frame = CGRect(x: 15, y: 158, width: 100, height: 100)
-    fourthButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      fourthButton.addTarget(self, action: #selector(fourthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      fourthButton.addTarget(self, action: #selector(dAIFourthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      fourthButton.addTarget(self, action: #selector(sAIFourthButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.fourthButton)
+    useToCreateAddButton(button: fourthButton, position: [15,158], typeOneAction: #selector(fourthButtonAction), typeTwoAction: #selector(dAIFourthButtonAction), typeThreeAction: #selector(sAIFourthButtonAction))
     
-    fifthButton.frame = CGRect(x: 158, y: 158, width: 100, height: 100)
-    fifthButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      fifthButton.addTarget(self, action: #selector(fifthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      fifthButton.addTarget(self, action: #selector(dAIFifthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      fifthButton.addTarget(self, action: #selector(sAIFifthButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.fifthButton)
+    useToCreateAddButton(button: fifthButton, position: [158,158], typeOneAction: #selector(fifthButtonAction), typeTwoAction: #selector(dAIFifthButtonAction), typeThreeAction: #selector(sAIFifthButtonAction))
     
-    sixthButton.frame = CGRect(x: 301, y: 158, width: 100, height: 100)
-    sixthButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      sixthButton.addTarget(self, action: #selector(sixthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      sixthButton.addTarget(self, action: #selector(dAISixthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      sixthButton.addTarget(self, action: #selector(sAISixthButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.sixthButton)
+    useToCreateAddButton(button: sixthButton, position: [301,158], typeOneAction: #selector(sixthButtonAction), typeTwoAction: #selector(dAISixthButtonAction), typeThreeAction: #selector(sAISixthButtonAction))
     
-    seventhButton.frame = CGRect(x: 15, y: 301, width: 100, height: 100)
-    seventhButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      seventhButton.addTarget(self, action: #selector(seventhButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      seventhButton.addTarget(self, action: #selector(dAISeventhButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      seventhButton.addTarget(self, action: #selector(sAISeventhButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.seventhButton)
+    useToCreateAddButton(button: seventhButton, position: [15,301], typeOneAction: #selector(seventhButtonAction), typeTwoAction: #selector(dAISeventhButtonAction), typeThreeAction: #selector(sAISeventhButtonAction))
     
-    eighthButton.frame = CGRect(x: 158, y: 301, width: 100, height: 100)
-    eighthButton.backgroundColor = .gray
-    if typeOfGame == 1 {
-      eighthButton.addTarget(self, action: #selector(eighthButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 2 {
-      eighthButton.addTarget(self, action: #selector(dAIEightButtonAction), for: .touchUpInside)
-    } else if typeOfGame == 3 {
-      eighthButton.addTarget(self, action: #selector(sAIEightButtonAction), for: .touchUpInside)
-    }
-    gameView.addSubview(self.eighthButton)
+    useToCreateAddButton(button: eighthButton, position: [158,301], typeOneAction: #selector(eighthButtonAction), typeTwoAction: #selector(dAIEightButtonAction), typeThreeAction: #selector(sAIEightButtonAction))
     
-    ninethButton.frame = CGRect(x: 301, y: 301, width: 100, height: 100)
-    ninethButton.backgroundColor = .gray
+    useToCreateAddButton(button: ninethButton, position: [301,301], typeOneAction: #selector(ninethButtonAction), typeTwoAction: #selector(dAINinethButtonAction), typeThreeAction: #selector(sAINinethButtonAction))
+  }
+  
+  func useToCreateAddButton(button: UIButton, position: [Int], typeOneAction: Selector, typeTwoAction: Selector, typeThreeAction: Selector) {
+    button.frame = CGRect(x: position[0], y: position[1], width: 100, height: 100)
+    button.backgroundColor = .gray
     if typeOfGame == 1 {
-      ninethButton.addTarget(self, action: #selector(ninethButtonAction), for: .touchUpInside)
+      button.addTarget(self, action: typeOneAction, for: .touchUpInside)
     } else if typeOfGame == 2 {
-      ninethButton.addTarget(self, action: #selector(dAINinethButtonAction), for: .touchUpInside)
+      button.addTarget(self, action: typeTwoAction, for: .touchUpInside)
     } else if typeOfGame == 3 {
-      ninethButton.addTarget(self, action: #selector(sAINinethButtonAction), for: .touchUpInside)
+      button.addTarget(self, action: typeThreeAction, for: .touchUpInside)
     }
-    gameView.addSubview(self.ninethButton)
+    gameView.addSubview(button)
   }
   
   
   /////////////////////////////////////////*Console for Human vs Human*////////////////////////////////////////////////////////
   @objc func firstButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][0] == 0 {
-      if !playerBool {
-        firstButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[0][0] = 1
-      } else {
-        firstButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[0][0] = 2
-      }
-      firstButton.titleLabel?.font = .systemFont(ofSize: 70)
-      firstButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: firstButton, myIndex: [0,0])
   }
   
   @objc func secondButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[0][1] == 0 {
-      if !playerBool {
-        secondButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[0][1] = 1
-      } else {
-        secondButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[0][1] = 2
-      }
-      secondButton.titleLabel?.font = .systemFont(ofSize: 70)
-      secondButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: secondButton, myIndex: [0,1])
   }
   
   @objc func thirdButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[0][2] == 0 {
-      if !playerBool {
-        thirdButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[0][2] = 1
-      } else {
-        thirdButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[0][2] = 2
-      }
-      thirdButton.titleLabel?.font = .systemFont(ofSize: 70)
-      thirdButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: thirdButton, myIndex: [0,2])
   }
   
   @objc func fourthButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[1][0] == 0 {
-      if !playerBool {
-        array[1][0] = 1
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        fourthButton.setTitle(playerOne, for: .normal)
-      } else {
-        fourthButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[1][0] = 2
-      }
-      fourthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fourthButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: fourthButton, myIndex: [1,0])
   }
   
   @objc func fifthButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[1][1] == 0 {
-      if !playerBool {
-        fifthButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[1][1] = 1
-      } else {
-        fifthButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[1][1] = 2
-      }
-      fifthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fifthButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: fifthButton, myIndex: [1,1])
   }
   
   @objc func sixthButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[1][2] == 0 {
-      if !playerBool {
-        sixthButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[1][2] = 1
-      } else {
-        sixthButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[1][2] = 2
-      }
-      sixthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      sixthButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: sixthButton, myIndex: [1,2])
   }
   
   @objc func seventhButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[2][0] == 0 {
-      if !playerBool {
-        seventhButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[2][0] = 1
-      } else {
-        seventhButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[2][0] = 2
-      }
-      seventhButton.titleLabel?.font = .systemFont(ofSize: 70)
-      seventhButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: seventhButton, myIndex: [2,0])
   }
   
   @objc func eighthButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[2][1] == 0 {
-      if !playerBool {
-        eighthButton.setTitle(playerOne, for: .normal)
-        playerOneLabel.text = "player One: "
-        playerTwolabel.text = "player Two: Play"
-        array[2][1] = 1
-      } else {
-        eighthButton.setTitle(playerTwo, for: .normal)
-        playerOneLabel.text = "player One: Play"
-        playerTwolabel.text = "player Two: "
-        array[2][1] = 2
-      }
-      eighthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      eighthButton.setTitleColor(.black, for: .normal)
-      playerBool = !playerBool
-      isGameOver()
-    }
+    useToCreateHumanVsHuman(button: eighthButton, myIndex: [2,1])
   }
   
   @objc func ninethButtonAction() {
-    if !playerOneWin && !playerTwoWin && array[2][2] == 0 {
+    useToCreateHumanVsHuman(button: ninethButton, myIndex: [2,2])
+  }
+  
+  func useToCreateHumanVsHuman(button: UIButton, myIndex: [Int]) {
+    if !playerOneWin && !playerTwoWin && array[myIndex[0]][myIndex[1]] == 0 {
       if !playerBool {
-        ninethButton.setTitle(playerOne, for: .normal)
+        button.setTitle(playerOne, for: .normal)
         playerOneLabel.text = "player One: "
         playerTwolabel.text = "player Two: Play"
-        array[2][2] = 1
+        array[myIndex[0]][myIndex[1]] = 1
       } else {
-        ninethButton.setTitle(playerTwo, for: .normal)
-        array[2][2] = 2
+        button.setTitle(playerTwo, for: .normal)
         playerOneLabel.text = "player One: Play"
         playerTwolabel.text = "player Two: "
+        array[myIndex[0]][myIndex[1]] = 2
       }
-      ninethButton.titleLabel?.font = .systemFont(ofSize: 70)
-      ninethButton.setTitleColor(.black, for: .normal)
+      button.titleLabel?.font = .systemFont(ofSize: 70)
+      button.setTitleColor(.black, for: .normal)
       playerBool = !playerBool
       isGameOver()
     }
@@ -473,107 +282,47 @@ class ViewController: UIViewController {
   
   /////////////////////////////////////////*Console for Human vs DumbAI*////////////////////////////////////////////////////////
   @objc func dAIFirstButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][0] == 0 {
-      firstButton.setTitle(playerOne, for: .normal)
-      firstButton.titleLabel?.font = .systemFont(ofSize: 70)
-      firstButton.setTitleColor(.black, for: .normal)
-      array[0][0] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: firstButton, myIndex: [0,0])
   }
   
   @objc func dAISecondButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][1] == 0 {
-      secondButton.setTitle(playerOne, for: .normal)
-      secondButton.titleLabel?.font = .systemFont(ofSize: 70)
-      secondButton.setTitleColor(.black, for: .normal)
-      array[0][1] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: secondButton, myIndex: [0,1])
   }
   
   @objc func dAIThirdButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][2] == 0 {
-      thirdButton.setTitle(playerOne, for: .normal)
-      thirdButton.titleLabel?.font = .systemFont(ofSize: 70)
-      thirdButton.setTitleColor(.black, for: .normal)
-      array[0][2] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: thirdButton, myIndex: [0,2])
   }
   
   @objc func dAIFourthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][0] == 0 {
-      fourthButton.setTitle(playerOne, for: .normal)
-      fourthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fourthButton.setTitleColor(.black, for: .normal)
-      array[1][0] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: fourthButton, myIndex: [1,0])
   }
   
   @objc func dAIFifthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][1] == 0 {
-      fifthButton.setTitle(playerOne, for: .normal)
-      fifthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fifthButton.setTitleColor(.black, for: .normal)
-      array[1][1] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: fifthButton, myIndex: [1,1])
   }
   
   @objc func dAISixthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][2] == 0 {
-      sixthButton.setTitle(playerOne, for: .normal)
-      sixthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      sixthButton.setTitleColor(.black, for: .normal)
-      array[1][2] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: sixthButton, myIndex: [1,2])
   }
   
   @objc func dAISeventhButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][0] == 0 {
-      seventhButton.setTitle(playerOne, for: .normal)
-      seventhButton.titleLabel?.font = .systemFont(ofSize: 70)
-      seventhButton.setTitleColor(.black, for: .normal)
-      array[2][0] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: seventhButton, myIndex: [2,0])
   }
   
   @objc func dAIEightButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][1] == 0 {
-      eighthButton.setTitle(playerOne, for: .normal)
-      eighthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      eighthButton.setTitleColor(.black, for: .normal)
-      array[2][1] = 1
-      isGameOver()
-      dumbAI()
-      isGameOver()
-    }
+    useToCreateHumanVsDumbAI(button: eighthButton, myIndex: [2,1])
   }
   
   @objc func dAINinethButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][2] == 0 {
-      ninethButton.setTitle(playerOne, for: .normal)
-      ninethButton.titleLabel?.font = .systemFont(ofSize: 70)
-      ninethButton.setTitleColor(.black, for: .normal)
-      array[2][2] = 1
+    useToCreateHumanVsDumbAI(button: ninethButton, myIndex: [2,2])
+  }
+  
+  func useToCreateHumanVsDumbAI(button: UIButton, myIndex: [Int]) {
+    if !playerOneWin && !playerTwoWin && array[myIndex[0]][myIndex[1]] == 0 {
+      button.setTitle(playerOne, for: .normal)
+      button.titleLabel?.font = .systemFont(ofSize: 70)
+      button.setTitleColor(.black, for: .normal)
+      array[myIndex[0]][myIndex[1]] = 1
       isGameOver()
       dumbAI()
       isGameOver()
@@ -584,107 +333,47 @@ class ViewController: UIViewController {
   
   /////////////////////////////////////////*Console for Human vs SmartAI*////////////////////////////////////////////////////////
   @objc func sAIFirstButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][0] == 0 {
-      firstButton.setTitle(playerOne, for: .normal)
-      firstButton.titleLabel?.font = .systemFont(ofSize: 70)
-      firstButton.setTitleColor(.black, for: .normal)
-      array[0][0] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: firstButton, myIndex: [0,0])
   }
   
   @objc func sAISecondButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][1] == 0 {
-      secondButton.setTitle(playerOne, for: .normal)
-      secondButton.titleLabel?.font = .systemFont(ofSize: 70)
-      secondButton.setTitleColor(.black, for: .normal)
-      array[0][1] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: secondButton, myIndex: [0,1])
   }
   
   @objc func sAIThirdButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[0][2] == 0 {
-      thirdButton.setTitle(playerOne, for: .normal)
-      thirdButton.titleLabel?.font = .systemFont(ofSize: 70)
-      thirdButton.setTitleColor(.black, for: .normal)
-      array[0][2] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: thirdButton, myIndex: [0,2])
   }
   
   @objc func sAIFourthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][0] == 0 {
-      fourthButton.setTitle(playerOne, for: .normal)
-      fourthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fourthButton.setTitleColor(.black, for: .normal)
-      array[1][0] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: fourthButton, myIndex: [1,0])
   }
   
   @objc func sAIFifthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][1] == 0 {
-      fifthButton.setTitle(playerOne, for: .normal)
-      fifthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      fifthButton.setTitleColor(.black, for: .normal)
-      array[1][1] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: fifthButton, myIndex: [1,1])
   }
   
   @objc func sAISixthButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[1][2] == 0 {
-      sixthButton.setTitle(playerOne, for: .normal)
-      sixthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      sixthButton.setTitleColor(.black, for: .normal)
-      array[1][2] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: sixthButton, myIndex: [1,2])
   }
   
   @objc func sAISeventhButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][0] == 0 {
-      seventhButton.setTitle(playerOne, for: .normal)
-      seventhButton.titleLabel?.font = .systemFont(ofSize: 70)
-      seventhButton.setTitleColor(.black, for: .normal)
-      array[2][0] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: seventhButton, myIndex: [2,0])
   }
   
   @objc func sAIEightButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][1] == 0 {
-      eighthButton.setTitle(playerOne, for: .normal)
-      eighthButton.titleLabel?.font = .systemFont(ofSize: 70)
-      eighthButton.setTitleColor(.black, for: .normal)
-      array[2][1] = 1
-      isGameOver()
-      smartAI()
-      isGameOver()
-    }
+    useToCreatSmartAI(button: eighthButton, myIndex: [2,1])
   }
   
   @objc func sAINinethButtonAction(){
-    if !playerOneWin && !playerTwoWin && array[2][2] == 0 {
-      ninethButton.setTitle(playerOne, for: .normal)
-      ninethButton.titleLabel?.font = .systemFont(ofSize: 70)
-      ninethButton.setTitleColor(.black, for: .normal)
-      array[2][2] = 1
+    useToCreatSmartAI(button: ninethButton, myIndex: [2,2])
+  }
+  
+  func useToCreatSmartAI(button: UIButton, myIndex: [Int]) {
+    if !playerOneWin && !playerTwoWin && array[myIndex[0]][myIndex[1]] == 0 {
+      button.setTitle(playerOne, for: .normal)
+      button.titleLabel?.font = .systemFont(ofSize: 70)
+      button.setTitleColor(.black, for: .normal)
+      array[myIndex[0]][myIndex[1]] = 1
       isGameOver()
       smartAI()
       isGameOver()
@@ -737,189 +426,152 @@ class ViewController: UIViewController {
   }
   
   func dumbAI() {
-    playedSpots = availableToPlay()
+    playedSpots = availableToPlay(whichArray: array)
     if playedSpots.count > 0 && !playerOneWin {
       let randomNumber = Int.random(in: 0..<playedSpots.count)
       let numberInArray = playedSpots[randomNumber]
-
+      
       if numberInArray == 0 {
-        array[0][numberInArray] = 2
-        firstButton.setTitle(playerTwo, for: .normal)
-        firstButton.titleLabel?.font = .systemFont(ofSize: 70)
-        firstButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: firstButton)
       }
-
+      
       if numberInArray == 1 {
-        array[0][numberInArray] = 2
-        secondButton.setTitle(playerTwo, for: .normal)
-        secondButton.titleLabel?.font = .systemFont(ofSize: 70)
-        secondButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: secondButton)
       }
-
+      
       if numberInArray == 2 {
-        array[0][numberInArray] = 2
-        thirdButton.setTitle(playerTwo, for: .normal)
-        thirdButton.titleLabel?.font = .systemFont(ofSize: 70)
-        thirdButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: thirdButton)
       }
-
+      
       if numberInArray == 3 {
-        array[1][numberInArray-3] = 2
-        fourthButton.setTitle(playerTwo, for: .normal)
-        fourthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        fourthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: fourthButton)
       }
-
+      
       if numberInArray == 4 {
-        array[1][numberInArray-3] = 2
-        fifthButton.setTitle(playerTwo, for: .normal)
-        fifthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        fifthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: fifthButton)
       }
-
+      
       if numberInArray == 5 {
-        array[1][numberInArray-3] = 2
-        sixthButton.setTitle(playerTwo, for: .normal)
-        sixthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        sixthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: sixthButton)
       }
-
+      
       if numberInArray == 6 {
-        array[2][numberInArray-6] = 2
-        seventhButton.setTitle(playerTwo, for: .normal)
-        seventhButton.titleLabel?.font = .systemFont(ofSize: 70)
-        seventhButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: seventhButton)
       }
-
+      
       if numberInArray == 7 {
-        array[2][numberInArray-6] = 2
-        eighthButton.setTitle(playerTwo, for: .normal)
-        eighthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        eighthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: eighthButton)
       }
-
+      
       if numberInArray == 8 {
-        array[2][numberInArray-6] = 2
-        ninethButton.setTitle(playerTwo, for: .normal)
-        ninethButton.titleLabel?.font = .systemFont(ofSize: 70)
-        ninethButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: ninethButton)
       }
     }
   }
   
   
-  
   func smartAI() {
-    playedSpots = availableToPlay()
+    playedSpots = availableToPlay(whichArray: array)
     if playedSpots.count > 0 && !playerOneWin {
-      
       
       var randomNumber = Int.random(in: 0..<playedSpots.count)
       var numberInArray = playedSpots[randomNumber]
-      let mustPlay = theOptions(usedArray: playedSpots, good: false)
       
-      if mustPlay.count > 0 {
+      let mustPlay = theOptions(usedArray: playedSpots, good: false, justAddedArray: array)
+      
+      if mustPlay.count == 1 {
         numberInArray = mustPlay[0]
       }
       
-      let options = theOptions(usedArray: playedSpots, good: true)
+      let options = theOptions(usedArray: playedSpots, good: true, justAddedArray: array)
       
       if options.count > 0 {
         randomNumber = Int.random(in: 0..<options.count)
         numberInArray = options[randomNumber]
         
-        let betterOption = theOptions(usedArray: options, good: false)
-
+        let betterOption = theOptions(usedArray: options, good: false, justAddedArray: array)
+        
         if betterOption.count > 0 {
           randomNumber = Int.random(in: 0..<betterOption.count)
           numberInArray = betterOption[randomNumber]
         }
       }
-    
       
-
       if numberInArray == 0 {
-        array[0][numberInArray] = 2
-        firstButton.setTitle(playerTwo, for: .normal)
-        firstButton.titleLabel?.font = .systemFont(ofSize: 70)
-        firstButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: firstButton)
       }
-
+      
       if numberInArray == 1 {
-        array[0][numberInArray] = 2
-        secondButton.setTitle(playerTwo, for: .normal)
-        secondButton.titleLabel?.font = .systemFont(ofSize: 70)
-        secondButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: secondButton)
       }
-
+      
       if numberInArray == 2 {
-        array[0][numberInArray] = 2
-        thirdButton.setTitle(playerTwo, for: .normal)
-        thirdButton.titleLabel?.font = .systemFont(ofSize: 70)
-        thirdButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: thirdButton)
       }
-
+      
       if numberInArray == 3 {
-        array[1][numberInArray-3] = 2
-        fourthButton.setTitle(playerTwo, for: .normal)
-        fourthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        fourthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: fourthButton)
       }
-
+      
       if numberInArray == 4 {
-        array[1][numberInArray-3] = 2
-        fifthButton.setTitle(playerTwo, for: .normal)
-        fifthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        fifthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: fifthButton)
       }
-
+      
       if numberInArray == 5 {
-        array[1][numberInArray-3] = 2
-        sixthButton.setTitle(playerTwo, for: .normal)
-        sixthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        sixthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: sixthButton)
       }
-
+      
       if numberInArray == 6 {
-        array[2][numberInArray-6] = 2
-        seventhButton.setTitle(playerTwo, for: .normal)
-        seventhButton.titleLabel?.font = .systemFont(ofSize: 70)
-        seventhButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: seventhButton)
       }
-
+      
       if numberInArray == 7 {
-        array[2][numberInArray-6] = 2
-        eighthButton.setTitle(playerTwo, for: .normal)
-        eighthButton.titleLabel?.font = .systemFont(ofSize: 70)
-        eighthButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: eighthButton)
       }
-
+      
       if numberInArray == 8 {
-        array[2][numberInArray-6] = 2
-        ninethButton.setTitle(playerTwo, for: .normal)
-        ninethButton.titleLabel?.font = .systemFont(ofSize: 70)
-        ninethButton.setTitleColor(.black, for: .normal)
+        playPlayerTwo(play: numberInArray, button: ninethButton)
       }
     }
   }
   
-  func availableToPlay() -> [Int] {
+  func playPlayerTwo(play: Int, button: UIButton) {
+    
+    var sub = 0
+    var row = 0
+    
+    if play > 2 {
+      sub = 3
+      row = 1
+    }
+    if play > 5 {
+      sub = 6
+      row = 2
+    }
+    
+    array[row][play-sub] = 2
+    button.setTitle(playerTwo, for: .normal)
+    button.titleLabel?.font = .systemFont(ofSize: 70)
+    button.setTitleColor(.black, for: .normal)
+  }
+  
+  func availableToPlay(whichArray: [[Int]]) -> [Int] {
     var output: [Int] = []
-    for i in 0..<array.count {
-      if array[0][i] == 0 {
+    for i in 0..<whichArray.count {
+      if whichArray[0][i] == 0 {
         output.append(i)
       }
-      if array[1][i] == 0 {
+      if whichArray[1][i] == 0 {
         output.append(i+3)
       }
-      if array[2][i] == 0 {
+      if whichArray[2][i] == 0 {
         output.append(i+6)
       }
     }
     return output
   }
   
-  func theOptions(usedArray: [Int], good: Bool) -> [Int] {
+  func theOptions(usedArray: [Int], good: Bool, justAddedArray: [[Int]]) -> [Int] {
     
     var outPut: [Int] = []
     var num = 2
@@ -930,7 +582,7 @@ class ViewController: UIViewController {
     for element in usedArray {
       
       var index = 0
-      var demoArray = array
+      var demoArray = justAddedArray
       var demoPlayerWin = false
       
       if element == 0 {
@@ -994,4 +646,5 @@ class ViewController: UIViewController {
   }
   
 }
+
 
