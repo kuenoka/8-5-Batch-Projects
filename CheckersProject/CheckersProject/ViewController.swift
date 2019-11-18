@@ -112,6 +112,7 @@ class ViewController: UIViewController {
   }
   
   func useToCreateButtonAction(thePieceNumber: Int) {
+    
     if playerTurn {
       plots[lastLocation[0][0]][lastLocation[0][1]].plotView.backgroundColor = .black
       plots[lastLocation[0][0]][lastLocation[0][1]].plotView.removeGestureRecognizer(firstTappedGestureRecogniser)
@@ -172,9 +173,7 @@ class ViewController: UIViewController {
             }
           }
         }
-//        movePiece()
       }
-      
       
       if kingMeBool[thePieceNumber] && currentLocation[0]-1 > -1 {
         if currentLocation[1]+1 < plots.count {
@@ -185,16 +184,16 @@ class ViewController: UIViewController {
             nextLocationBool[2] = true
             playerOneKill[2] = false
           } else if plots[currentLocation[0]-1][currentLocation[1]+1].state == 2 {
-              if currentLocation[0]-2 > -1 && currentLocation[1]+2 < plots.count {
-                if plots[currentLocation[0]-2][currentLocation[1]+2].state == 3 {
-                  nextLocation[2] = [currentLocation[0]-2, currentLocation[1]+2]
-                  lastLocation[2] = nextLocation[2]
-                  plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .purple
-                  nextLocationBool[2] = true
-                  playerOneKill[2] = true
-                }
+            if currentLocation[0]-2 > -1 && currentLocation[1]+2 < plots.count {
+              if plots[currentLocation[0]-2][currentLocation[1]+2].state == 3 {
+                nextLocation[2] = [currentLocation[0]-2, currentLocation[1]+2]
+                lastLocation[2] = nextLocation[2]
+                plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .purple
+                nextLocationBool[2] = true
+                playerOneKill[2] = true
               }
             }
+          }
         }
         
         if currentLocation[1]-1 > -1 {
@@ -205,20 +204,18 @@ class ViewController: UIViewController {
             nextLocationBool[3] = true
             playerOneKill[3] = false
           } else if plots[currentLocation[0]-1][currentLocation[1]-1].state == 2 {
-              if currentLocation[0]-2 > -1 && currentLocation[1]-2 > -1 {
-                if plots[currentLocation[0]-2][currentLocation[1]-2].state == 3 {
-                  nextLocation[3] = [currentLocation[0]-2, currentLocation[1]-2]
-                  lastLocation[3] = nextLocation[3]
-                  plots[nextLocation[3][0]][nextLocation[3][1]].plotView.backgroundColor = .purple
-                  nextLocationBool[3] = true
-                  playerOneKill[3] = true
-                }
+            if currentLocation[0]-2 > -1 && currentLocation[1]-2 > -1 {
+              if plots[currentLocation[0]-2][currentLocation[1]-2].state == 3 {
+                nextLocation[3] = [currentLocation[0]-2, currentLocation[1]-2]
+                lastLocation[3] = nextLocation[3]
+                plots[nextLocation[3][0]][nextLocation[3][1]].plotView.backgroundColor = .purple
+                nextLocationBool[3] = true
+                playerOneKill[3] = true
               }
             }
+          }
         }
       }
-      
-//      movePiece()
     }
     movePiece()
   }
@@ -331,6 +328,9 @@ class ViewController: UIViewController {
       pTwoLives[removedPiece] = 0
       playerOneKill[0] = false
       playerOneKill[1] = false
+      playerOneKill[2] = false
+      playerOneKill[3] = false
+      moreKills(thePieceNumber: piece)
     }
   }
   
@@ -362,13 +362,13 @@ class ViewController: UIViewController {
       pTwoLives[removedPiece] = 0
       playerOneKill[0] = false
       playerOneKill[1] = false
+      playerOneKill[2] = false
+      playerOneKill[3] = false
+      moreKills(thePieceNumber: piece)
     }
   }
   
-  
-  
   @objc func toThirdLocation(sender: UITapGestureRecognizer) {
-    
     plots[nextLocation[2][0]][nextLocation[2][1]].plotView.addSubview(pOnePieces[piece].button)
     plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .black
     if nextLocation[0][0] != 10 && nextLocation[0][1] != 10 {
@@ -381,9 +381,6 @@ class ViewController: UIViewController {
       plots[nextLocation[3][0]][nextLocation[3][1]].plotView.backgroundColor = .black
     }
     pOnePieces[piece].location = nextLocation[2]
-//    if pOnePieces[piece].location[0] == 9 {
-//      kingMeBool[piece] = true
-//    }
     plots[currentLocation[0]][currentLocation[1]].state = 3
     plots[nextLocation[2][0]][nextLocation[2][1]].state = 1
     nextLocationBool[2] = false
@@ -397,6 +394,7 @@ class ViewController: UIViewController {
       playerOneKill[1] = false
       playerOneKill[2] = false
       playerOneKill[3] = false
+      moreKills(thePieceNumber: piece)
     }
   }
   
@@ -413,9 +411,6 @@ class ViewController: UIViewController {
       plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .black
     }
     pOnePieces[piece].location = nextLocation[3]
-//    if pOnePieces[piece].location[0] == 9 {
-//      kingMeBool[piece] = true
-//    }
     plots[currentLocation[0]][currentLocation[1]].state = 3
     plots[nextLocation[3][0]][nextLocation[3][1]].state = 1
     nextLocationBool[3] = false
@@ -429,16 +424,95 @@ class ViewController: UIViewController {
       playerOneKill[1] = false
       playerOneKill[2] = false
       playerOneKill[3] = false
+      moreKills(thePieceNumber: piece)
     }
   }
   
-  
-  
-  
-  
-  
-  
-  
+  func moreKills ( thePieceNumber: Int ) {
+    
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.backgroundColor = .black
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.removeGestureRecognizer(firstTappedGestureRecogniser)
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.removeGestureRecognizer(sFirstTappedGestureRecogniser)
+    
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.backgroundColor = .black
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.removeGestureRecognizer(secondTappedGestureRecogniser)
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.removeGestureRecognizer(sSecondTappedGestureRecogniser)
+    
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.backgroundColor = .black
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.removeGestureRecognizer(thirdTappedGestureRecogniser)
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.removeGestureRecognizer(sThirdTappedGestureRecogniser)
+    
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.backgroundColor = .black
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.removeGestureRecognizer(fourthTappedGestureRecogniser)
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.removeGestureRecognizer(sFourthTappedGestureRecogniser)
+    
+    piece = thePieceNumber
+    currentLocation = pOnePieces[piece].location
+    
+    if currentLocation[0]+1 < plots.count {
+      if currentLocation[1]+1 < plots.count {
+        if plots[currentLocation[0]+1][currentLocation[1]+1].state == 2 {
+          if currentLocation[0]+2 < plots.count && currentLocation[1]+2 < plots.count {
+            if plots[currentLocation[0]+2][currentLocation[1]+2].state == 3 {
+              nextLocation[0] = [currentLocation[0]+2, currentLocation[1]+2]
+              lastLocation[0] = nextLocation[0]
+              plots[nextLocation[0][0]][nextLocation[0][1]].plotView.backgroundColor = .purple
+              nextLocationBool[0] = true
+              playerOneKill[0] = true
+            }
+          }
+        }
+      }
+      
+      if currentLocation[1]-1 > -1 {
+        if plots[currentLocation[0]+1][currentLocation[1]-1].state == 2 {
+          if currentLocation[0]+2 < plots.count && currentLocation[1]-2 > -1 {
+            if plots[currentLocation[0]+2][currentLocation[1]-2].state == 3 {
+              nextLocation[1] = [currentLocation[0]+2, currentLocation[1]-2]
+              lastLocation[1] = nextLocation[1]
+              plots[nextLocation[1][0]][nextLocation[1][1]].plotView.backgroundColor = .purple
+              nextLocationBool[1] = true
+              playerOneKill[1] = true
+            }
+          }
+        }
+      }
+    }
+    
+    if currentLocation[0]-1 > -1 {
+      if currentLocation[1]+1 < plots.count {
+        if plots[currentLocation[0]-1][currentLocation[1]+1].state == 2 {
+          if currentLocation[0]-2 > -1 && currentLocation[1]+2 < plots.count {
+            if plots[currentLocation[0]-2][currentLocation[1]+2].state == 3 {
+              nextLocation[2] = [currentLocation[0]-2, currentLocation[1]+2]
+              lastLocation[2] = nextLocation[2]
+              plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .purple
+              nextLocationBool[2] = true
+              playerOneKill[2] = true
+            }
+          }
+        }
+      }
+      
+      if currentLocation[1]-1 > -1 {
+        if plots[currentLocation[0]-1][currentLocation[1]-1].state == 2 {
+          if currentLocation[0]-2 > -1 && currentLocation[1]-2 > -1 {
+            if plots[currentLocation[0]-2][currentLocation[1]-2].state == 3 {
+              nextLocation[3] = [currentLocation[0]-2, currentLocation[1]-2]
+              lastLocation[3] = nextLocation[3]
+              plots[nextLocation[3][0]][nextLocation[3][1]].plotView.backgroundColor = .purple
+              nextLocationBool[3] = true
+              playerOneKill[3] = true
+            }
+          }
+        }
+      }
+    }
+    if playerOneKill[0] || playerOneKill[1] || playerOneKill[2] || playerOneKill[3] {
+      playerTurn = !playerTurn
+      movePiece()
+    }
+  }
   
   func sUseToCreateButtonAction(thePieceNumber: Int) {
     if !playerTurn {
@@ -503,8 +577,6 @@ class ViewController: UIViewController {
         }
       }
       
-      
-      
       if sKingMeBool[thePieceNumber] && currentLocation[0]+1 < plots.count {
         if currentLocation[1]+1 < plots.count {
           if plots[currentLocation[0]+1][currentLocation[1]+1].state == 3 {
@@ -546,7 +618,6 @@ class ViewController: UIViewController {
           }
         }
       }
-      
       sMovePiece()
     }
   }
@@ -661,6 +732,7 @@ class ViewController: UIViewController {
       playerTwoKill[1] = false
       playerTwoKill[2] = false
       playerTwoKill[3] = false
+      sMoreKills(thePieceNumber: piece)
     }
   }
   
@@ -695,10 +767,9 @@ class ViewController: UIViewController {
       playerTwoKill[1] = false
       playerTwoKill[2] = false
       playerTwoKill[3] = false
+      sMoreKills(thePieceNumber: piece)
     }
   }
-  
-  
   
   @objc func sToThirdLocation(sender: UITapGestureRecognizer) {
     plots[nextLocation[2][0]][nextLocation[2][1]].plotView.addSubview(pTwoPieces[piece].button)
@@ -726,6 +797,7 @@ class ViewController: UIViewController {
       playerTwoKill[1] = false
       playerTwoKill[2] = false
       playerTwoKill[3] = false
+      sMoreKills(thePieceNumber: piece)
     }
   }
   
@@ -756,12 +828,95 @@ class ViewController: UIViewController {
       playerTwoKill[1] = false
       playerTwoKill[2] = false
       playerTwoKill[3] = false
+      sMoreKills(thePieceNumber: piece)
     }
   }
   
+  func sMoreKills ( thePieceNumber: Int ) {
   
-  
-  
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.backgroundColor = .black
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.removeGestureRecognizer(firstTappedGestureRecogniser)
+    plots[lastLocation[0][0]][lastLocation[0][1]].plotView.removeGestureRecognizer(sFirstTappedGestureRecogniser)
+    
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.backgroundColor = .black
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.removeGestureRecognizer(secondTappedGestureRecogniser)
+    plots[lastLocation[1][0]][lastLocation[1][1]].plotView.removeGestureRecognizer(sSecondTappedGestureRecogniser)
+    
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.backgroundColor = .black
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.removeGestureRecognizer(thirdTappedGestureRecogniser)
+    plots[lastLocation[2][0]][lastLocation[2][1]].plotView.removeGestureRecognizer(sThirdTappedGestureRecogniser)
+    
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.backgroundColor = .black
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.removeGestureRecognizer(fourthTappedGestureRecogniser)
+    plots[lastLocation[3][0]][lastLocation[3][1]].plotView.removeGestureRecognizer(sFourthTappedGestureRecogniser)
+    
+    piece = thePieceNumber
+    currentLocation = pTwoPieces[piece].location
+    
+    if currentLocation[0]-1 > -1 {
+      if currentLocation[1]+1 < plots.count {
+        if plots[currentLocation[0]-1][currentLocation[1]+1].state == 1 {
+          if currentLocation[0]-2 > -1 && currentLocation[1]+2 < plots.count {
+            if plots[currentLocation[0]-2][currentLocation[1]+2].state == 3 {
+              nextLocation[0] = [currentLocation[0]-2, currentLocation[1]+2]
+              lastLocation[0] = nextLocation[0]
+              plots[nextLocation[0][0]][nextLocation[0][1]].plotView.backgroundColor = .purple
+              nextLocationBool[0] = true
+              playerTwoKill[0] = true
+            }
+          }
+        }
+      }
+      
+      if currentLocation[1]-1 > -1 {
+        if plots[currentLocation[0]-1][currentLocation[1]-1].state == 1 {
+          if currentLocation[0]-2 > -1 && currentLocation[1]-2 > -1 {
+            if plots[currentLocation[0]-2][currentLocation[1]-2].state == 3 {
+              nextLocation[1] = [currentLocation[0]-2, currentLocation[1]-2]
+              lastLocation[1] = nextLocation[1]
+              plots[nextLocation[1][0]][nextLocation[1][1]].plotView.backgroundColor = .purple
+              nextLocationBool[1] = true
+              playerTwoKill[1] = true
+            }
+          }
+        }
+      }
+    }
+    
+    if currentLocation[0]+1 < plots.count {
+      if currentLocation[1]+1 < plots.count {
+        if plots[currentLocation[0]+1][currentLocation[1]+1].state == 1 {
+          if currentLocation[0]+2 < plots.count && currentLocation[1]+2 < plots.count {
+            if plots[currentLocation[0]+2][currentLocation[1]+2].state == 3 {
+              nextLocation[2] = [currentLocation[0]+2, currentLocation[1]+2]
+              lastLocation[2] = nextLocation[2]
+              plots[nextLocation[2][0]][nextLocation[2][1]].plotView.backgroundColor = .purple
+              nextLocationBool[2] = true
+              playerTwoKill[2] = true
+            }
+          }
+        }
+      }
+      
+      if currentLocation[1]-1 > -1 {
+        if plots[currentLocation[0]+1][currentLocation[1]-1].state == 1 {
+          if currentLocation[0]+2 < plots.count && currentLocation[1]-2 > -1 {
+            if plots[currentLocation[0]+2][currentLocation[1]-2].state == 3 {
+              nextLocation[3] = [currentLocation[0]+2, currentLocation[1]-2]
+              lastLocation[3] = nextLocation[3]
+              plots[nextLocation[3][0]][nextLocation[3][1]].plotView.backgroundColor = .purple
+              nextLocationBool[3] = true
+              playerTwoKill[3] = true
+            }
+          }
+        }
+      }
+    }
+    if playerTwoKill[0] || playerTwoKill[1] || playerTwoKill[2] || playerTwoKill[3] {
+      playerTurn = !playerTurn
+      sMovePiece()
+    }
+  }
   
   func createBoard() {
     view.addSubview(board)
@@ -831,43 +986,6 @@ class ViewController: UIViewController {
     plot.plotView.heightAnchor.constraint(equalToConstant: 41).isActive = true
     plot.plotView.widthAnchor.constraint(equalToConstant: 41).isActive = true
   }
-  
-  //  func kingMe() {
-  //
-  //  }
-  //  func moreKils(location: [Int]) -> [Int] {
-  //
-  //    if location[0]+1 < plots.count {
-  //      if location[1]+1 < plots.count {
-  //        if plots[location[0]+1][location[1]+1].state == 2 {
-  //          if location[0]+2 < plots.count && location[1]+2 < plots.count {
-  //            if plots[location[0]+2][location[1]+2].state == 3 {
-  //              let killsNextLocation = [location[0]+2, location[1]+2]
-  //              lastLocation[0] = nextLocation[0]
-  //              plots[killsNextLocation[0]][killsNextLocation[1]].plotView.backgroundColor = .purple
-  //              nextLocationBool[0] = true
-  //              playerOneKill[0] = true
-  //            }
-  //          }
-  //        }
-  //      }
-  //
-  //      if location[1]-1 > -1 {
-  //       if plots[location[0]+1][location[1]-1].state == 2 {
-  //          if location[0]+2 < plots.count && location[1]-2 > -1 {
-  //            if plots[location[0]+2][location[1]-2].state == 3 {
-  //              let killsNextLocation = [location[0]+2, location[1]-2]
-  //              lastLocation[1] = nextLocation[1]
-  //              plots[killsNextLocation[0]][killsNextLocation[1]].plotView.backgroundColor = .purple
-  //              nextLocationBool[1] = true
-  //              playerOneKill[1] = true
-  //            }
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
-  
 }
 
 struct Piece {
