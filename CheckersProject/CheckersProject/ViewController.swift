@@ -33,7 +33,7 @@ class ViewController: UIViewController {
   let sThirdTappedGestureRecogniser = UITapGestureRecognizer()
   let sFourthTappedGestureRecogniser = UITapGestureRecognizer()
   var currentLocation = [0,0]
-  var nextLocation = [[10,10], [10,10], [10,0], [10,0]]
+  var nextLocation = [[10,10], [10,10], [10,10], [10,10]]
   var nextLocationBool = [false, false, false, false]
   var lastLocation = [[0,0], [0,0], [0,0], [0,0]]
   var piece = 0
@@ -589,6 +589,8 @@ class ViewController: UIViewController {
     plots[nextLocation[0][0]][nextLocation[0][1]].state = 1
     nextLocationBool[0] = false
     playerTurn = !playerTurn
+//    printPlotState()
+//    print("next")
     if playerOneKill[0] {
       plots[nextLocation[0][0]-1][nextLocation[0][1]-1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[0][0]-1, nextLocation[0][1]-1])
@@ -623,6 +625,8 @@ class ViewController: UIViewController {
     plots[currentLocation[0]][currentLocation[1]].state = 3
     plots[nextLocation[1][0]][nextLocation[1][1]].state = 1
     nextLocationBool[1] = false
+//    printPlotState()
+//    print("next")
     playerTurn = !playerTurn
     if playerOneKill[1] {
       plots[nextLocation[1][0]-1][nextLocation[1][1]+1].state = 3
@@ -655,6 +659,8 @@ class ViewController: UIViewController {
     plots[nextLocation[2][0]][nextLocation[2][1]].state = 1
     nextLocationBool[2] = false
     playerTurn = !playerTurn
+//    printPlotState()
+//    print("next")
     if playerOneKill[2] {
       plots[nextLocation[2][0]+1][nextLocation[2][1]-1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[2][0]+1, nextLocation[2][1]-1])
@@ -685,6 +691,8 @@ class ViewController: UIViewController {
     plots[currentLocation[0]][currentLocation[1]].state = 3
     plots[nextLocation[3][0]][nextLocation[3][1]].state = 1
     nextLocationBool[3] = false
+//    printPlotState()
+//    print("next")
     playerTurn = !playerTurn
     if playerOneKill[3] {
       plots[nextLocation[3][0]+1][nextLocation[3][1]+1].state = 3
@@ -999,6 +1007,8 @@ class ViewController: UIViewController {
     plots[nextLocation[0][0]][nextLocation[0][1]].state = 2
     playerTurn = !playerTurn
     nextLocationBool[0] = false
+//    printPlotState()
+//    print("next")
     if playerTwoKill[0] {
       plots[nextLocation[0][0]+1][nextLocation[0][1]-1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[0][0]+1, nextLocation[0][1]-1])
@@ -1034,7 +1044,8 @@ class ViewController: UIViewController {
     plots[nextLocation[1][0]][nextLocation[1][1]].state = 2
     playerTurn = !playerTurn
     nextLocationBool[1] = false
-    
+//    printPlotState()
+//    print("next")
     if playerTwoKill[1] {
       plots[nextLocation[1][0]+1][nextLocation[1][1]+1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[1][0]+1, nextLocation[1][1]+1])
@@ -1066,6 +1077,8 @@ class ViewController: UIViewController {
     plots[nextLocation[2][0]][nextLocation[2][1]].state = 2
     playerTurn = !playerTurn
     nextLocationBool[2] = false
+//    printPlotState()
+//    print("next")
     if playerTwoKill[2] {
       plots[nextLocation[2][0]-1][nextLocation[2][1]-1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[2][0]-1, nextLocation[2][1]-1])
@@ -1097,6 +1110,8 @@ class ViewController: UIViewController {
     plots[nextLocation[3][0]][nextLocation[3][1]].state = 2
     playerTurn = !playerTurn
     nextLocationBool[3] = false
+//    printPlotState()
+//    print("next")
     if playerTwoKill[3] {
       plots[nextLocation[3][0]-1][nextLocation[3][1]+1].state = 3
       let removedPiece = locatePiece(location: [nextLocation[3][0]-1, nextLocation[3][1]+1])

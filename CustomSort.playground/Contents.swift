@@ -80,7 +80,7 @@ func customSort(array: [Int]) -> [Int] {
   let frequecyOfElements = getAllFrequencies(array: individualArray, originalArray: array)
   let individualFrequency = individualElements(array: frequecyOfElements)
   let sortedFrequency = sortElements(frequencies: individualFrequency)
-  let sortIndividualArray = sortElements(frequencies: individualArray)
+  //let sortIndividualArray = sortElements(frequencies: individualArray)
   let sortedArray = sortElements(frequencies: array)
   
   for i in 0..<sortedFrequency.count {
