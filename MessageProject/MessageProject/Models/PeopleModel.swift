@@ -12,4 +12,6 @@ struct People: Codable {
   let id: Int
   let person: String
   let password: String
+  var contact: [Contact]
+  var userURL: String
 }

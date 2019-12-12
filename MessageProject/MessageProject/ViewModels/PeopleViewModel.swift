@@ -10,7 +10,7 @@ import Foundation
 
 class PeopleViewModel {
   private var peopleViewModel = [People]()
-  private let peopleURL = URL(string: "http://localhost:8000/People")
+  private let peopleURL = URL(string: "http://localhost:3000/Message")
   
   func getData(completion: (()-> Void)?) {
     guard let viewModelUrl = peopleURL else { return }
@@ -30,13 +30,20 @@ class PeopleViewModel {
     return peopleViewModel[index].password
   }
   
+//  func getContacts(index: Int) -> [Contact] {
+//    return peopleViewModel[index].contact
+//  }
+  func getID(index: Int) -> Int {
+    return peopleViewModel[index].id
+  }
+  
   func getNumberOfPeople() -> Int {
     return peopleViewModel.count
   }
   
-  func addNewPerson(newPerson: String, id: Int, password: String) {
+  func addNewPerson(newPerson: String, id: Int, password: String, contact: [Contact], userURL: String) {
   
-     let person = People(id: id, person: newPerson, password: password)
+     let person = People(id: id, person: newPerson, password: password, contact: contact, userURL: userURL)
      peopleViewModel.append(person)
      guard let uploadData = try? JSONEncoder().encode(person) else { return }
      
