@@ -8,13 +8,8 @@
 
 import Foundation
 
-//struct Message: Codable {
-//  let id: Int
-//  let message: String
-//  let person: String
-//}
-
-//struct ContactInfo {
-//  let id: Int
-//  let person: String
-//}
+struct Message: Codable {
+  let id: Int
+  let message: String
+  let person: String
+}

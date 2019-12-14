@@ -11,5 +11,5 @@ import Foundation
 struct Contact: Codable {
   let id: Int
   let person: String
-  var message: [String]
+  var message: [Message]
 }

@@ -13,5 +13,4 @@ struct People: Codable {
   let person: String
   let password: String
   var contact: [Contact]
-  var userURL: String
 }

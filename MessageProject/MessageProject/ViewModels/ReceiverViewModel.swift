@@ -9,7 +9,7 @@
 import Foundation
 
 class ReceiverViewModel {
-  var receiverViewModel = People(id: 1, person: "", password: "", contact: [Contact(id: 2, person: "", message: [])], userURL: "")
+  var receiverViewModel = People(id: 1, person: "", password: "", contact: [Contact(id: 2, person: "", message: [])])
   var receiverViewModelURL: String!
   
   func getDataReceiver(completion: (()-> Void)?) {
@@ -23,7 +23,7 @@ class ReceiverViewModel {
   }
   
   func getMessageReceiver(contactIndex: Int, messageIndex: Int) -> String {
-    return receiverViewModel.contact[contactIndex].message[messageIndex]
+    return receiverViewModel.contact[contactIndex].message[messageIndex].message
   }
   func getNumberOfMessageReceiver(contactIndex: Int) -> Int {
     return receiverViewModel.contact[contactIndex].message.count
@@ -34,36 +34,36 @@ class ReceiverViewModel {
   func getMessageReceiverContact(contactIndex: Int) -> String {
     return receiverViewModel.contact[contactIndex].person
   }
-  func addNewMessage(newMessage: String, contactindex: Int){//, receiverIndex: Int) {
-   
-      //let message = Message(id: id, message: newMessage, person: person)
-      receiverViewModel.contact[contactindex].message.append(newMessage)
-      guard let uploadData = try? JSONEncoder().encode(receiverViewModel) else { return }
-      
-      let url = URL(string: receiverViewModelURL) //Remember to put ATS exception if the URL is not https
-      var request = URLRequest(url: url!)
-      request.httpMethod = "PUT"
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-      let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
-          if let error = error {
-              print ("error: \(error)")
-              return
-          }
-
-          guard let response = response as? HTTPURLResponse,
-              (200...299).contains(response.statusCode) else {
-              print ("server error")
-              return
-          }
-          if let mimeType = response.mimeType,
-              mimeType == "application/json",
-              let data = data,
-              let dataString = String(data: data, encoding: .utf8) {
-              print ("got data: \(dataString)")
-          }
+  func addNewMessage(newMessage: Message, contactindex: Int) {
+    
+    receiverViewModel.contact[contactindex].message.append(newMessage)
+    guard let uploadData = try? JSONEncoder().encode(receiverViewModel) else { return }
+    
+    let url = URL(string: receiverViewModelURL) //Remember to put ATS exception if the URL is not https
+    var request = URLRequest(url: url!)
+    request.httpMethod = "PUT"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
+      if let error = error {
+        print ("error: \(error)")
+        return
       }
-      task.resume()
-
+      
+      guard let response = response as? HTTPURLResponse,
+        (200...299).contains(response.statusCode) else {
+          print ("server error")
+          return
+      }
+      if let mimeType = response.mimeType,
+        mimeType == "application/json",
+        let data = data,
+        let dataString = String(data: data, encoding: .utf8) {
+        print ("got data: \(dataString)")
+      }
     }
+    task.resume()
+    
+  }
 }

@@ -12,15 +12,11 @@ class ContactsViewController: UIViewController {
   
   var contactArray = ContactViewModel()
   var personID: Int!
-  var userURL: String!
   var namesArray: [String]!
-  //var snamesArray: [ContactInfo]!
   var idArray: [Int]!
-  
   @IBOutlet weak var contactTableView: UITableView!
-  //var id: Int!
-  
   @IBOutlet weak var contactTextField: UITextField!
+  
   @IBAction func addContact(_ sender: Any) {
     if contactTextField.text != "" && namesArray.contains(contactTextField.text ?? ""){
       
@@ -45,15 +41,11 @@ class ContactsViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(identifier: "ViewController") as! ViewController
         let newID = contactArray.getNumberOfContacts()+1
         viewController.contactID = newID
-        //print(newID)
-        viewController.senderID = personID
         viewController.senderURL = "http://localhost:3000/Message/\(personID ?? 1)"
         if let contactName = contactTextField.text {
           let theID = findID(person: contactName)
-          viewController.receiverID = theID
           viewController.receiverURL = "http://localhost:3000/Message/\(theID)"
         }
-        viewController.contact = contactArray.contactViewModel
         contactArray.addNewContact(newMessages: [], person: contactTextField.text ?? "", id: newID)
         contactTextField.text = ""
         contactTableView.reloadData()
@@ -89,16 +81,11 @@ class ContactsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "ViewController") as! ViewController
         viewController.contactID = newID
-        //print(newID)
-        viewController.senderID = personID
         viewController.senderURL = "http://localhost:3000/Message/\(personID ?? 1)"
         if let contactName = contactTextField.text {
           let theID = findID(person: contactName)
-          viewController.receiverID = theID
           viewController.receiverURL = "http://localhost:3000/Message/\(theID)"
         }
-        viewController.contact = contactArray.contactViewModel
-        viewController.name = contactTextField.text
         contactTextField.text = ""
         contactTableView.reloadData()
         
@@ -122,10 +109,6 @@ class ContactsViewController: UIViewController {
     contactTableView.dataSource = self
     contactTableView.delegate = self
     contactTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    //    if let url = URL(string: "http://localhost:3000/Message/1") {
-    //      contactArray.getData(id: personID, completion: reloadTable)
-    //    }
-    //print("personID: \(personID ?? 0)")
     contactArray.viewModelURL = "http://localhost:3000/Message/\(personID ?? 1)"
     contactArray.getData{
       DispatchQueue.main.async {
@@ -134,11 +117,6 @@ class ContactsViewController: UIViewController {
     }
   }
   
-  func reloadTable() -> Void {
-    DispatchQueue.main.async {
-      self.contactTableView.reloadData()
-    }
-  }
 }
 
 
@@ -183,19 +161,13 @@ extension ContactsViewController: UITableViewDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "ViewController") as! ViewController
         viewController.contactID = newID
-        //print(newID)
-        viewController.senderID = personID
         viewController.senderURL = "http://localhost:3000/Message/\(personID ?? 1)"
         if let contactName = contactTextField.text {
           let theID = findID(person: contactName)
-          viewController.receiverID = theID
           viewController.receiverURL = "http://localhost:3000/Message/\(theID)"
         }
-        viewController.contact = contactArray.contactViewModel
-        viewController.name = contactTextField.text
         contactTextField.text = ""
         contactTableView.reloadData()
-        
         navigationController?.pushViewController(viewController, animated: true)
       }
     }

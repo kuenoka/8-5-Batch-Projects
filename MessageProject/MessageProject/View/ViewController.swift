@@ -9,36 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+  
   var messageArray = MessageViewModel()
   var receiverArray = ReceiverViewModel()
-  var name: String!
   var contactID: Int!
-  var senderID: Int!
   var senderURL: String!
-  var receiverID: Int!
   var receiverURL: String!
-  var contact: People!
   var tableID = 0
   @IBOutlet weak var messageTableView: UITableView!
   @IBOutlet weak var theTextField: UITextField!
-  var id: Int!
   
   @IBAction func addMessage(_ sender: Any) {
     let index = findID(person: messageArray.senderViewModel.person)
-    messageArray.addNewMessage(newMessage: messageArray.senderViewModel.person + ": " + (theTextField.text ?? ""), contactindex: contactID-1)//, receiverIndex: index)
-    receiverArray.addNewMessage(newMessage: messageArray.senderViewModel.person + ": " + (theTextField.text ?? ""), contactindex: index)
-    messageTableView.reloadData()
-//    messageArray.getData{
-//      DispatchQueue.main.async {
-//        self.messageTableView.reloadData()
-//      }
-//    }
-    theTextField.text = ""
+    if index != 100000000 {
+      let id = messageArray.getNumberOfMessageSender(contactIndex: tableID)+1
+      let message = Message(id: id, message: theTextField.text ?? "", person: messageArray.senderViewModel.person)
+      messageArray.addNewMessage(newMessage: message, contactindex: tableID)
+      receiverArray.addNewMessage(newMessage: message, contactindex: index)
+      messageTableView.reloadData()
+      theTextField.text = ""
+    } else {
+      theTextField.text = "You are not on his contact"
+    }
   }
   
   func findID(person: String) -> Int {
-    var foundID = 12
+    var foundID = 100000000
     for i in 0..<receiverArray.getNumberOfContact() {
       if person == receiverArray.getMessageReceiverContact(contactIndex: i) {
         foundID = i
@@ -49,14 +45,15 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    theTextField.text = ""
     messageTableView.dataSource = self
-    messageTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    messageTableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
+    messageTableView.backgroundColor = .white
     messageArray.senderViewModelURL = senderURL
     receiverArray.receiverViewModelURL = receiverURL
     messageArray.getData{
       self.tableID = self.contactID-1
     }
-    //print(receiverURL)
     receiverArray.getDataReceiver{
       DispatchQueue.main.async {
         self.messageTableView.reloadData()
@@ -66,16 +63,32 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
-
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return messageArray.getNumberOfMessageSender(contactIndex: tableID)//0)
+    return messageArray.getNumberOfMessageSender(contactIndex: tableID)
   }
-
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-//    cell.textLabel?.text = messageArray.getPerson(index: indexPath.row) + ": " + messageArray.getMessage(index: indexPath.row)
-    cell.textLabel?.text = messageArray.getMessageSender(contactIndex: tableID, messageIndex: indexPath.row)
     
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+    cell.messageLabel.layer.cornerRadius = 10
+    cell.messageLabel.text =  messageArray.getMessageSender(contactIndex: tableID, messageIndex: indexPath.row)
+    cell.personLabel.text = messageArray.getMessageSenderContact(contactIndex: tableID, messageIndex: indexPath.row)
+    if messageArray.getMessageSenderContact(contactIndex: tableID, messageIndex: indexPath.row) == messageArray.senderViewModel.person {
+       cell.messageLabel.textAlignment = .right
+      cell.personLabel.textAlignment = .right
+      cell.messageLabel.backgroundColor = .blue
+      cell.personLabel.backgroundColor = .blue
+      cell.view.backgroundColor = .blue
+    } else {
+     
+      cell.messageLabel.textAlignment = .left
+      cell.personLabel.textAlignment = .left
+      cell.messageLabel.backgroundColor = .gray
+      cell.personLabel.backgroundColor = .gray
+      cell.view.backgroundColor = .gray
+    }
+    cell.setConstraints()
     return cell
   }
 }

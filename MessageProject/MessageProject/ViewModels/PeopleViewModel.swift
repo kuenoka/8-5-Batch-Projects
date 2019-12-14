@@ -30,9 +30,6 @@ class PeopleViewModel {
     return peopleViewModel[index].password
   }
   
-//  func getContacts(index: Int) -> [Contact] {
-//    return peopleViewModel[index].contact
-//  }
   func getID(index: Int) -> Int {
     return peopleViewModel[index].id
   }
@@ -43,7 +40,7 @@ class PeopleViewModel {
   
   func addNewPerson(newPerson: String, id: Int, password: String, contact: [Contact], userURL: String) {
   
-     let person = People(id: id, person: newPerson, password: password, contact: contact, userURL: userURL)
+     let person = People(id: id, person: newPerson, password: password, contact: contact)
      peopleViewModel.append(person)
      guard let uploadData = try? JSONEncoder().encode(person) else { return }
      

@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
   
   var peopleArray = PeopleViewModel()
   var namesArray:[String] = []
-  //var snamesArray:[ContactInfo] = []
   var idArray:[Int] = []
   
   @IBAction func createProfile(_ sender: Any) {
@@ -39,19 +38,16 @@ class HomeViewController: UIViewController {
         let contactViewController = storyboard.instantiateViewController(identifier: "ContactsViewController") as! ContactsViewController
         let newID = peopleArray.getNumberOfPeople()+1
         contactViewController.personID = newID
-        contactViewController.userURL = "http://localhost:3000/MessageJSON/\(newID)"
         peopleArray.addNewPerson(newPerson: nameTextField.text ?? "", id: newID, password: passwordTextField.text ?? "", contact: [], userURL: "http://localhost:3000/Message/\(newID)")
         if let name = nameTextField.text {
           namesArray.append(name)
           idArray.append(newID)
         }
         contactViewController.namesArray = namesArray
-        //contactViewController.snamesArray = snamesArray
         contactViewController.idArray = idArray
-        //print("namesArray: \(namesArray)")
         nameTextField.text = ""
         passwordTextField.text = ""
-          navigationController?.pushViewController(contactViewController, animated: true)
+        navigationController?.pushViewController(contactViewController, animated: true)
       }
     }
   }
@@ -77,20 +73,15 @@ class HomeViewController: UIViewController {
         }
       }
       
-//      print("newID: \(newID)")
-//      print("Number Of People: \(peopleArray.getNumberOfPeople())")
-      
       if loadBool {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let contactsViewController = storyboard.instantiateViewController(identifier: "ContactsViewController") as! ContactsViewController
         contactsViewController.personID = newID
-        contactsViewController.userURL = "http://localhost:3000/MessageJSON/\(newID)"
         contactsViewController.namesArray = namesArray
         contactsViewController.idArray = idArray
-        //print("namesArray: \(namesArray)")
         nameTextField.text = ""
         passwordTextField.text = ""
-          navigationController?.pushViewController(contactsViewController, animated: true)
+        navigationController?.pushViewController(contactsViewController, animated: true)
       }
     }
   }
@@ -103,8 +94,6 @@ class HomeViewController: UIViewController {
     peopleArray.getData{
       DispatchQueue.main.async {
         for i in 0..<self.peopleArray.getNumberOfPeople() {
-          //let contactInfo = ContactInfo(id: self.peopleArray.getID(index: i), person: self.peopleArray.getPeople(index: i))
-          //self.snamesArray.append(contactInfo)
           self.namesArray.append(self.peopleArray.getPeople(index: i))
           self.idArray.append(self.peopleArray.getID(index: i))
         }
